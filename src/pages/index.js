@@ -1,23 +1,19 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { connect } from "react-redux";
 import {
   updatePage,
   loadPageData,
 } from "../redux/actions";
 
-import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
 
 import Layout from "../layouts/default.js";
-import Section from "../layouts/Section";
-import Title from "../components/editables/Title";
 import Paragraph from "../components/editables/Paragraph";
 import Image from "../components/editables/Image";
 import PlainText from "../components/editables/PlainText";
-import Action from "../components/editables/Action";
-import EditableButton from "../components/editables/Button";
+import CustomLink from "../components/editables/CustomLink";
+import CustomButton from "../components/editables/CustomButton";
 
 import Partner from "../components/home/Partner";
 
@@ -94,7 +90,6 @@ class HomePage extends React.Component {
 
   render() {
     const content = this.props.pageData ? this.props.pageData.content : {};
-    const title = this.props.pageData ? this.props.pageData.title : "";
     const partners = content["partners"] || [];
 
     return (
@@ -122,9 +117,9 @@ class HomePage extends React.Component {
                           </h3>
 
                           <div className="local-scroll">
-                              <a href="#overview" className="btn btn-mod btn-large btn-w hidden-xs">Learn more</a>
-                              <span className="hidden-xs">&nbsp;</span>
-                              <a href="#apply" className="btn btn-mod btn-large btn-color" target="_blank">Notify me</a>
+                            <CustomButton content={content["landing-button-1"]} onSave={this.saveHandler("landing-button-1")} className="btn btn-mod btn-large btn-w hidden-xs" />
+                            <span className="hidden-xs">&nbsp;</span>
+                            <CustomButton content={content["landing-button-2"]} onSave={this.saveHandler("landing-button-2")} className="btn btn-mod btn-large btn-color" />
                           </div>
 
                       </div>
@@ -164,27 +159,33 @@ class HomePage extends React.Component {
                               <div className="col-sm-4 wow fadeInRight" data-wow-delay="0.1s">
                                   <div className="alt-features-item align-center">
                                       <div className="alt-features-icon color">
-                                          <a href="#originators"></a><span className="icon-lightbulb"></span>
+                                        <span className="icon-lightbulb"></span>
                                       </div>
-                                      <h3 className="alt-features-title"><a href="#originators">The Originators</a></h3>
+                                      <h3 className="alt-features-title">
+                                        <CustomLink content={content["originators-link-1"]} onSave={this.saveHandler("originators-link-1")} />
+                                      </h3>
                                   </div>
                               </div>
 
                               <div className="col-sm-4 wow fadeInRight" data-wow-delay="0.2s">
                                   <div className="alt-features-item align-center">
                                       <div className="alt-features-icon color">
-                                          <a href="#call-to-action"><span className="icon-genius"></span></a>
+                                        <span className="icon-genius"></span>
                                       </div>
-                                      <h3 className="alt-features-title"><a href="#call-to-action">Be an Adopter</a></h3>
+                                      <h3 className="alt-features-title">
+                                        <CustomLink content={content["originators-link-2"]} onSave={this.saveHandler("originators-link-2")} />
+                                      </h3>
                                   </div>
                               </div>
 
                               <div className="col-sm-4 wow fadeInRight" data-wow-delay="0.3s">
                                   <div className="alt-features-item align-center">
                                       <div className="alt-features-icon color">
-                                          <a href="#event"><span className="icon-calendar"></span></a>
+                                        <span className="icon-calendar"></span>
                                       </div>
-                                      <h3 className="alt-features-title"><a href="#contact">About the Event</a></h3>
+                                      <h3 className="alt-features-title">
+                                        <CustomLink content={content["originators-link-3"]} onSave={this.saveHandler("originators-link-3")} />
+                                      </h3>
                                   </div>
                               </div>
 
@@ -339,7 +340,7 @@ class HomePage extends React.Component {
 
                               <div className="team-item-image" data-url="originators/narayana-health">
 
-                                  <a >
+                                  <a href="/originators/ross-clinics">
                                       <img src="narayana/narayana-sm.png" alt="Narayana Health" />
                                   </a>
 
@@ -397,9 +398,9 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="local-scroll">
-                              <a href="#originators" className="btn btn-mod btn-w btn-large">Learn more</a>
-                              <span className="hidden-xs">&nbsp;</span>
-                              <a href="#apply" className="btn btn-mod btn-large btn-color" target="_blank">Subscribe</a>
+                            <CustomButton content={content["adopters-button-1"]} onSave={this.saveHandler("adopters-button-1")} className="btn btn-mod btn-w btn-large" />
+                            <span className="hidden-xs">&nbsp;</span>
+                            <CustomButton content={content["adopters-button-2"]} onSave={this.saveHandler("adopters-button-2")} className="btn btn-mod btn-large btn-color" />
                           </div>
 
                       </div>
@@ -479,7 +480,7 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="post-prev-title">
-                          <Action content={content["news-item-1-title"]} onSave={this.saveHandler("news-item-1-title")} />
+                          <CustomLink content={content["news-item-1-title"]} onSave={this.saveHandler("news-item-1-title")} />
                         </div>
 
                         <div className="post-prev-info">
@@ -491,7 +492,7 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="post-prev-more">
-                          <Action content={content["news-item-1-link"]} onSave={this.saveHandler("news-item-1-link")} />
+                          <CustomButton content={content["news-item-1-link"]} onSave={this.saveHandler("news-item-1-link")} className="btn btn-mod btn-color" />
                         </div>
                       </div>
 
@@ -501,7 +502,7 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="post-prev-title">
-                          <Action content={content["news-item-2-title"]} onSave={this.saveHandler("news-item-2-title")} />
+                          <CustomLink content={content["news-item-2-title"]} onSave={this.saveHandler("news-item-2-title")} />
                         </div>
 
                         <div className="post-prev-info">
@@ -513,7 +514,7 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="post-prev-more">
-                          <Action content={content["news-item-2-link"]} onSave={this.saveHandler("news-item-2-link")} />
+                          <CustomButton content={content["news-item-2-link"]} onSave={this.saveHandler("news-item-2-link")} className="btn btn-mod btn-color" />
                         </div>
                       </div>
 
@@ -523,7 +524,7 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="post-prev-title">
-                          <Action content={content["news-item-3-title"]} onSave={this.saveHandler("news-item-3-title")} />
+                          <CustomLink content={content["news-item-3-title"]} onSave={this.saveHandler("news-item-3-title")} />
                         </div>
 
                         <div className="post-prev-info">
@@ -535,7 +536,7 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="post-prev-more">
-                          <Action content={content["news-item-3-link"]} onSave={this.saveHandler("news-item-3-link")} />
+                          <CustomButton content={content["news-item-3-link"]} onSave={this.saveHandler("news-item-3-link")} className="btn btn-mod btn-color" />
                         </div>
                       </div>
 
@@ -559,8 +560,9 @@ class HomePage extends React.Component {
                           </h2>
 
                           <div className="local-scroll">
-                              <a href="/faqs" className="btn btn-mod btn-border-w btn-large">FAQ</a>
-                              <a href="mailto:t.pasipanodya@endeva.org" className="btn btn-mod btn-border-w btn-large">Contact us</a>
+                            <CustomButton content={content["contact-button-1"]} onSave={this.saveHandler("contact-button-1")} className="btn btn-mod btn-border-w btn-large" />
+                            <span className="hidden-xs">&nbsp;</span>
+                            <CustomButton content={content["contact-button-2"]} onSave={this.saveHandler("contact-button-2")} className="btn btn-mod btn-border-w btn-large" />
                           </div>
 
                       </div>
@@ -603,7 +605,7 @@ class HomePage extends React.Component {
                                 <PlainText content={content["event-info-cta1-title"]} onSave={this.saveHandler("event-info-cta1-title")} />
                               </h3>
                               <div className="alt-features-descr-1 email-link">
-                                <Action content={content["event-info-cta1-link"]} onSave={this.saveHandler("event-info-cta1-link")} />
+                                <CustomLink content={content["event-info-cta1-link"]} onSave={this.saveHandler("event-info-cta1-link")} />
                               </div>
                           </div>
                       </div>
@@ -617,7 +619,7 @@ class HomePage extends React.Component {
                                 <PlainText content={content["event-info-cta2-title"]} onSave={this.saveHandler("event-info-cta2-title")} />
                               </h3>
                               <div className="alt-features-descr-1 email-link">
-                                <Action content={content["event-info-cta2-link"]} onSave={this.saveHandler("event-info-cta2-link")} />
+                                <CustomLink content={content["event-info-cta2-link"]} onSave={this.saveHandler("event-info-cta2-link")} />
                               </div>
                           </div>
                       </div>
@@ -631,7 +633,7 @@ class HomePage extends React.Component {
                                 <PlainText content={content["event-info-cta3-title"]} onSave={this.saveHandler("event-info-cta3-title")} />
                               </h3>
                               <div className="alt-features-descr-1 email-link">
-                                <Action content={content["event-info-cta3-link"]} onSave={this.saveHandler("event-info-cta3-link")} />
+                                <CustomLink content={content["event-info-cta3-link"]} onSave={this.saveHandler("event-info-cta3-link")} />
                               </div>
                           </div>
                       </div>

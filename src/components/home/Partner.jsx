@@ -1,8 +1,7 @@
 import React from "react";
 
 import Image from "../editables/Image";
-import PlainText from "../editables/PlainText";
-import Paragraph from "../editables/Paragraph";
+import CustomLink from "../editables/CustomLink";
 
 import Button from "@material-ui/core/Button"
 
@@ -16,9 +15,8 @@ const Partner = ({ partner, index, onSave, onDelete }) => {
           <Image content={partner["logo"]} onSave={onSave(index, "logo")} />
         </div>
         <h3 className="service-title">
-          <PlainText content={partner["name"]} onSave={onSave(index, "name")} />
+          <CustomLink content={partner["name"]} onSave={onSave(index, "name")} />
         </h3>
-        <Paragraph content={partner["description"]} onSave={onSave(index, "description")} />
       </div>
       { onDelete && <Button onClick={onDelete(index)}>Delete</Button> }
     </div>

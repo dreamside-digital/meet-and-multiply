@@ -1,7 +1,5 @@
 import React from "react";
-import { Link, StaticQuery, graphql } from "gatsby";
-import Grid from "@material-ui/core/Grid";
-import Section from "../../layouts/Section";
+import { StaticQuery, graphql } from "gatsby";
 
 const Footer = props => {
   return (
@@ -9,19 +7,19 @@ const Footer = props => {
         <div className="container">
 
             <div className="footer-social-links mb-60 mb-xs-40">
-                <a href="https://www.facebook.com/pages/Endeva/234763126582163" title="Facebook" target="_blank"><i className="fa fa-facebook"></i></a>
-                <a href="https://twitter.com/_Endeva" title="Twitter" target="_blank"><i className="fa fa-twitter"></i></a>
-                <a href="https://www.linkedin.com/grp/home?gid=4143187" title="LinkedIn+" target="_blank"><i className="fa fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/pages/Endeva/234763126582163" title="Facebook" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/_Endeva" title="Twitter" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/grp/home?gid=4143187" title="LinkedIn+" target="_blank" rel="noopener noreferrer"><i className="fa fa-linkedin"></i></a>
             </div>
 
             <div className="footer-text">
 
                 <div className="footer-copy">
-                    <a href="http://www.endeva.org" target="_blank">&copy; Endeva 2015</a>
+                    <a href="http://www.endeva.org" target="_blank" rel="noopener noreferrer">&copy; Endeva 2015</a>
                 </div>
 
                 <div className="footer-made">
-                    <a href="http://www.endeva.org" target="_blank">www.endeva.org</a>
+                    <a href="http://www.endeva.org" target="_blank" rel="noopener noreferrer">www.endeva.org</a>
                 </div>
 
             </div>

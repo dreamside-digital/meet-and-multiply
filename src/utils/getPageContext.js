@@ -22,12 +22,12 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: `'Roboto', Helvetica, Arial, sans-serif`,
+    fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
     fontSize: 18,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
-    color: '#2F4858',
+    color: '#333',
     display1: {
       fontFamily: `'Averia Serif Libre', cursive`,
       fontSize: 60,
@@ -45,7 +45,7 @@ const theme = createMuiTheme({
       lineHeight: 1.2,
     },
     display3: {
-      fontFamily: `'Roboto', Helvetica, Arial, sans-serif`,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
       fontSize: 24,
       letterSpacing: "0.05rem",
       color: '#2F4858',
@@ -55,7 +55,7 @@ const theme = createMuiTheme({
       lineHeight: 1.2,
     },
     display4: {
-      fontFamily: `'Roboto', Helvetica, Arial, sans-serif`,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
       fontSize: 20,
       letterSpacing: "0.05rem",
       color: '#2F4858',
@@ -84,12 +84,12 @@ const theme = createMuiTheme({
       color: "#fff",
     },
     body1: {
-      fontFamily: `'Roboto', Helvetica, Arial, sans-serif`,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
       fontSize: 18,
       fontWeightLight: 300,
       fontWeightRegular: 400,
       fontWeightMedium: 500,
-      color: '#2F4858',
+      color: '#333',
     },
   },
   status: {

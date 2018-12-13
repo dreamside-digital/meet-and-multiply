@@ -10,7 +10,6 @@ Primary use:    MultiPurpose Template
 
 @import "font-awesome.min.css";
 @import "et-line.css";
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,700,700italic,300);
 
 /*------------------------------------------------------------------
 [Table of contents]
@@ -107,7 +106,7 @@ Section Text:       15px/1.7 "Open Sans", arial, sans-serif;
 .inline-block{display:inline-block;}
 .white{ color: #fff !important; }
 .black{ color: #000 !important; }
-.color{ color: #e91e63 !important; }
+.color{ color: #de8002 !important; }
 .stick-fixed{
     position: fixed !important;
     top: 0;
@@ -224,7 +223,7 @@ img:not([draggable]), embed, object, video {
     top: 50%;
     left: 50%;;
     margin: -20px 0 0 -20px;
-    background-color: #e91e63;
+    background-color: #de8002;
     text-indent: -12345px;
 
     -webkit-border-radius: 100%;
@@ -263,17 +262,17 @@ img:not([draggable]), embed, object, video {
 body{
     color: #111;
     font-size: 16px;
-    font-family: Roboto, arial, sans-serif;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
 }
 
 a{
-    color: #e91e63;
+    color: #de8002;
     text-decoration: none;
 }
 a:hover{
-    color: #e91e63;
+    color: #de8002;
     text-decoration: underline;
 }
 
@@ -592,15 +591,15 @@ a.btn-mod:focus{
 }
 
 .btn-mod.btn-border-c{
-    color: #e91e63;
-    border: 2px solid #e91e63;
+    color: #de8002;
+    border: 2px solid #de8002;
     background: transparent;
 }
 .btn-mod.btn-border-c:hover,
 .btn-mod.btn-border-c:focus{
     color: #fff;
     border-color: transparent;
-    background: #e91e63;
+    background: #de8002;
 }
 
 .btn-mod.btn-border-w{
@@ -626,7 +625,7 @@ a.btn-mod:focus{
 }
 
 .btn-mod.btn-w-color{
-    color: #e91e63;
+    color: #de8002;
     background: #fff;
 }
 .btn-mod.btn-w-color:hover,
@@ -647,12 +646,12 @@ a.btn-mod:focus{
 
 .btn-mod.btn-color{
       color: #fff;
-      background: #e91e63;
+      background: #de8002;
 }
 .btn-mod.btn-color:hover,
 .btn-mod.btn-color:focus{
     color: #fff;
-    background: #e91e63;
+    background: #de8002;
     opacity: .85;
 }
 
@@ -1139,7 +1138,7 @@ mobile-on .inner-nav .btn{
     margin: 0 10px;
 }
 .hs-line-10.highlight{
-    background: #e91e63;
+    background: #de8002;
     opacity: .97;
 }
 .hs-line-10.transparent{
@@ -1989,7 +1988,7 @@ a.logo:hover{
     background: rgba(252,252,252, .9);
 }
 .bg-color{
-    background-color: #e91e63;
+    background-color: #de8002;
 }
 .bg-colort-alfa:before,
 .bg-colort-alfa .YTPOverlay:before{
@@ -1999,7 +1998,7 @@ a.logo:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background: #e91e63;
+    background: #de8002;
     opacity: .97;
 }
 .bg-color-alfa-30:before,
@@ -2010,7 +2009,7 @@ a.logo:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background: #e91e63;
+    background: #de8002;
     opacity: .3;
 }
 .bg-color-alfa-50:before,
@@ -2021,7 +2020,7 @@ a.logo:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background: #e91e63;
+    background: #de8002;
     opacity: .5;
 }
 .bg-color-alfa-70:before,
@@ -2032,7 +2031,7 @@ a.logo:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background: #e91e63;
+    background: #de8002;
     opacity: .7;
 }
 .bg-color-alfa-90:before,
@@ -2043,7 +2042,7 @@ a.logo:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background: #e91e63;
+    background: #de8002;
     opacity: .9;
 }
 
@@ -2283,7 +2282,7 @@ a.logo:hover{
 }
 
 .service-item:hover{
-    background-color: #e91e63;
+    background-color: #de8002;
     color: #fff;
 }
 .service-item:hover .service-title,
@@ -2368,7 +2367,7 @@ a.logo:hover{
 .team-item-image{
     position: relative;
     overflow: hidden;
-    border-bottom: 2px solid #e91e63;
+    border-bottom: 2px solid #de8002;
     cursor: pointer;
 }
 .team-item-image.no-bord{
@@ -2578,7 +2577,7 @@ a.logo:hover{
     font-size: 28px;
     line-height: 64px;
     color: #fff;
-    background: #e91e63;
+    background: #de8002;
 
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -2942,7 +2941,7 @@ a.logo:hover{
     color: #fff;
 }
 .works-grid.hover-color .work-item:hover .work-img:after{
-    background: #e91e63;
+    background: #de8002;
     opacity: .73;
 }
 .works-grid.hover-white .work-item:hover .work-intro,
@@ -3252,7 +3251,7 @@ a.logo:hover{
     width: 100%;
 }
 .post-prev-border{
-    border-bottom: 2px solid #e91e63;
+    border-bottom: 2px solid #de8002;
 }
 .post-prev-title{
     margin-bottom: 1px;
@@ -4845,7 +4844,7 @@ section:hover .small-item-carousel .owl-next{
 
 }
 .tpl-progress.progress-color .progress-bar{
-    background-color: #e91e63;
+    background-color: #de8002;
     color: #777;
 }
 .tpl-progress.progress-color .progress-bar > span{
@@ -4882,7 +4881,7 @@ section:hover .small-item-carousel .owl-next{
 }
 
 .tpl-progress-alt.progress-color .progress-bar{
-    background-color: #e91e63;
+    background-color: #de8002;
     color: #fff;
 }
 .tpl-progress-alt.progress-color .progress-bar > span{

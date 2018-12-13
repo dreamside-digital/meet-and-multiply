@@ -4248,6 +4248,16 @@ table.shopping-cart-table tr td{
     font-size: 12px;
 }
 
+
+/* ==============================
+   FAQs page
+   ============================== */
+
+#faqs {
+     background-image: url(../images/faq-bg.jpg);
+}
+
+
 /* ==============================
    Admin pages
    ============================== */

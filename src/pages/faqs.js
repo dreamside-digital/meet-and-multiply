@@ -1,21 +1,12 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { connect } from "react-redux";
-import { map } from "lodash";
 import { updatePage, loadPageData } from "../redux/actions";
 
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import Layout from "../layouts/default.js";
-import Section from "../layouts/Section";
-import Title from "../components/editables/Title";
-import Paragraph from "../components/editables/Paragraph";
+import PlainText from "../components/editables/PlainText";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -35,6 +26,23 @@ const mapStateToProps = state => {
   };
 };
 
+const Question = ({ faq, index, onSave, onDelete, isEditingPage }) => {
+  return (
+    <>
+      <dt>
+      <a href=""><PlainText
+          content={faq["question"]}
+          onSave={onSave(index, "question")}
+        /></a>
+      </dt>
+      <dd>
+        <PlainText content={faq["answer"]} onSave={onSave(index, "answer")} />
+      </dd>
+      {isEditingPage && <Button onClick={onDelete(index)}>Delete</Button>}
+    </>
+  );
+};
+
 class FrequentlyAskedQuestions extends React.Component {
   componentDidMount() {
     const initialPageData = {
@@ -49,12 +57,11 @@ class FrequentlyAskedQuestions extends React.Component {
     this.props.onUpdatePageData("faqs", id, content);
   };
 
-  addFaq = category => () => {
+  addFaq = () => {
     const faqArray = [...this.props.pageData.content.questions];
     const emptyFaq = {
       question: { text: "Question" },
-      answer: { text: "Answer" },
-      category: category
+      answer: { text: "Answer" }
     };
     faqArray.push(emptyFaq);
 
@@ -70,7 +77,6 @@ class FrequentlyAskedQuestions extends React.Component {
 
     faqArray[index] = updatedFaq;
 
-
     this.props.onUpdatePageData("faqs", "questions", faqArray);
   };
 
@@ -85,79 +91,60 @@ class FrequentlyAskedQuestions extends React.Component {
     const content = this.props.pageData ? this.props.pageData.content : {};
     const questions = content.questions || [];
 
-    const categories = {
-      "General Information": [],
-      "Registration": [],
-      "Tickets": [],
-      "Partnerships & Sponsorship": []
-    };
-
-    questions.forEach((question, index) => {
-      if (!categories[question.category]) {
-        categories[question.category] = [];
-      }
-      question.position = index
-      categories[question.category].push(question);
-    });
-
     return (
       <Layout>
-        <main>
-          <Section id="basic-page">
-            <header className="text-center">
-              <Title
-                level="h1"
-                content={content["faqs-title"]}
-                onSave={this.saveHandler("faqs-title")}
-              />
-            </header>
+        <main className="page" id="top">
+          <section className="page-section bg-dark-alfa-30" id="faqs">
+            <div className="relative container align-left">
+              <div className="row">
+                <div className="col-md-8">
+                  <h1 className="section-heading mb-10 mb-xs-0">
+                    <PlainText
+                      content={content["faqs-title"]}
+                      onSave={this.saveHandler("faqs-title")}
+                    />
+                  </h1>
+                  <div className="hs-line-4 uppercase">
+                    <PlainText
+                      content={content["faqs-subtitle"]}
+                      onSave={this.saveHandler("faqs-subtitle")}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-            {map(categories, (category, key) => {
-              return (
-                <div key={`category-${key}`}>
-                  <Typography variant="headline" color="default">
-                    {key}
-                  </Typography>
-                  {category.map((question, i) => (
-                    <ExpansionPanel key={`category-${key}-question-${i}`}>
-                      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Title
-                          level="h4"
-                          content={question["question"]}
-                          onSave={this.editFaq(question.position, "question")}
-                        />
-                      </ExpansionPanelSummary>
-                      <ExpansionPanelDetails>
-                        <Paragraph
-                          content={question["answer"]}
-                          onSave={this.editFaq(question.position, "answer")}
-                        />
-                      </ExpansionPanelDetails>
-                      {this.props.isEditingPage && (
-                        <ExpansionPanelActions>
-                          <Button
-                            color="default"
-                            onClick={this.deleteFaq(question.position)}
-                          >
-                            Delete
-                          </Button>
-                        </ExpansionPanelActions>
-                      )}
-                    </ExpansionPanel>
-                  ))}
+          <section className="page-section">
+            <div className="container relative">
+              <div className="row section-text">
+                <div className="col-md-8 col-md-offset-2">
+                  <dl className="accordion">
+                    {questions.map((question, index) => (
+                      <Question
+                        key={index}
+                        faq={question}
+                        index={index}
+                        onSave={this.editFaq}
+                        onDelete={this.deleteFaq}
+                        isEditingPage={this.props.isEditingPage}
+                      />
+                    ))}
+                  </dl>
+
                   {this.props.isEditingPage && (
                     <Button
                       color="default"
                       variant="contained"
-                      onClick={this.addFaq(key)}
+                      onClick={this.addFaq}
                     >
                       Add question
                     </Button>
                   )}
                 </div>
-              );
-            })}
-          </Section>
+              </div>
+            </div>
+          </section>
         </main>
       </Layout>
     );
@@ -174,6 +161,7 @@ export const query = graphql`
       id
       title
       slug
+      content
     }
   }
 `;

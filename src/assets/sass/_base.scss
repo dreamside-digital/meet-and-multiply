@@ -1,0 +1,184 @@
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  padding-bottom: $lg-spacing;
+}
+
+.outer-container {
+  position: relative;
+}
+
+.background-container {
+  width: 100%;
+  background: $off-white;
+
+  &.dark {
+    background: $dark-blue;
+    color: $white;
+  }
+}
+
+.oversize {
+  max-width: 100%;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.vert-center {
+  display: flex;
+  align-items: center;
+}
+
+.horiz-center {
+  display: flex;
+  justify-content: center;
+}
+
+.vert-spacing {
+  /*padding-top: $md-spacing;*/
+  padding-bottom: $md-spacing;
+}
+
+.vert-spacing-lg {
+  padding-top: $lg-spacing;
+  padding-bottom: $lg-spacing;
+}
+
+.vert-spacing-sm {
+  padding-top: $sm-spacing;
+  padding-bottom: $sm-spacing;
+}
+
+.horiz-spacing {
+  padding-left: $lg-spacing;
+  padding-right: $lg-spacing;
+}
+
+.btn {
+  border-radius: 2em;
+  text-transform: uppercase;
+  font-size: $sm-size;
+  font-family: $primary-font;
+  font-weight: $bold;
+  padding: 0.4em 1em;
+  text-decoration: none;
+  border: 2px solid $orange;
+  margin-bottom: $lg-spacing;
+
+  &.white {
+    background: $off-white;
+    color: $orange;
+  }
+
+  &.orange {
+    background: $orange;
+    color: $white;
+  }
+
+  &.red {
+    background: $dark-red;
+    color: $white;
+    border: 2px solid $dark-red;
+  }
+
+  &.arrow {
+    padding: 0.5em 0.7em;
+    font-weight: $light;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &.animate {
+    transition: background 0.3s ease-in-out;
+
+    &.white {
+      &:hover, &:focus, &:active {
+        background: $white;
+      }
+    }
+
+    &.orange {
+      &:hover, &:focus, &:active {
+        background: transparentize($orange, 0.1);
+      }
+    }
+
+    &.red {
+      &:hover, &:focus, &:active {
+        background: transparentize($dark-red, 0.1);
+      }
+    }
+  }
+}
+
+.day-selector {
+  display: flex;
+  justify-content: center;
+  font-size: $sm-size;
+
+  .btn.white {
+    background: $white;
+  }
+
+  .btn.active {
+    background: $orange;
+    color: $white;
+  }
+
+  .btn-day1 {
+    border-radius: 2em 0 0 2em;
+  }
+
+  .btn-day2 {
+    border-radius: 0 2em 2em 0;
+  }
+}
+
+i.fa {
+  margin-left: 12px;
+}
+
+button {
+  img {
+    height: 1em;
+    display: inline !important;
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+}
+
+.on-top {
+  z-index: 1 !important;
+}
+
+i.pause-btn, i.play-btn {
+  margin-right: 12px;
+  margin-left: 0;
+
+  &:hover, &:focus {
+    transform: scale(1.1);
+  }
+}
+
+.slide {
+  &:focus {
+    outline: none;
+  }
+}

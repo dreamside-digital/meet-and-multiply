@@ -1,0 +1,629 @@
+section#landing {
+  padding-top: $lg-spacing;
+  @include background-pattern;
+
+  .image-container {
+    position: relative;
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 3rem;
+
+    img.oversize {
+      max-height: 80vh;
+    }
+
+    .ii2030-bubble {
+      background: $dark-red;
+      height: 200px;
+      width: 300px;
+      min-width: 250px;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:before {
+        content: '';
+        height: 0px;
+        width: 0px;
+        border-top: 22px solid transparent;
+        border-bottom: 22px solid transparent;
+        border-left: 60px solid $dark-red;
+        position: absolute;
+        right: -20px;
+        bottom: 10px;
+        transform: rotate(45deg);
+      }
+
+      h2 {
+        color: $white;
+        text-transform: lowercase;
+      }
+    }
+  }
+
+  h1 {
+    line-height: 1.2em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+section#overview {
+  .background-container {
+    .outer-container {
+      margin: $lg-spacing 0;
+    }
+  }
+
+  header {
+    .headline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .slide {
+    &:focus {
+      outline: none;
+    }
+
+    h2 {
+      text-transform: none;
+    }
+  }
+}
+
+section#timeline {
+  .timeline {
+    margin-top: $lg-spacing;
+    margin-bottom: $md-spacing;
+  }
+
+  .slick-dots {
+    position: relative;
+    bottom: 0;
+
+    li {
+      padding: 0 10%;
+
+      button {
+        background-color: $dark-red;
+        border-radius: 50%;
+
+        &:before {
+          font-size: $h3-size;
+          top: -60px;
+          font-family: $title-font;
+          color: $orange;
+          width: 100%;
+          font-family: $title-font;
+        }
+      }
+
+      &:before {
+        content: '';
+        width: 0%;
+        outline: 2px solid $off-white;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: -51%;
+      }
+
+      &:after {
+        content: '';
+        width: 100%;
+        outline: 2px solid $dark-red;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        transition: width 0.5s ease-in-out;
+        left: -51%;
+      }
+
+      &:nth-of-type(1) {
+        &:after {
+          content: none;
+        }
+
+        button {
+          &:before {
+            content: '';
+          }
+        }
+      }
+
+      &:nth-of-type(2) {
+        &:before {
+          width: 100%;
+        }
+
+        button {
+          &:before {
+            content: '';
+          }
+        }
+      }
+
+      &:nth-of-type(3) {
+        &:before {
+          width: 100%;
+        }
+
+        button {
+          &:before {
+            content: '';
+          }
+        }
+      }
+
+      &.slick-active ~ li {
+        button {
+          background-color: $off-white;
+        }
+
+        &:after {
+          width: 0%;
+        }
+      }
+    }
+  }
+
+  .content-container {
+    padding: $sm-spacing;
+
+    &.centered {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .image {
+      max-width: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+  }
+}
+
+section#agenda {
+
+  .oversize.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(100px);
+
+    img {
+      position: relative;
+      width: 300px;
+    }
+
+    .robot-body {
+      &after {
+        content: 'Day 1';
+      }
+    }
+  }
+
+  .agenda-item {
+    .agenda-date {
+      text-transform: uppercase;
+    }
+  }
+
+  .day-selector {
+    .btn {
+      margin-bottom: 0;
+      font-size: 1em;
+    }
+  }
+
+  .label {
+    text-align: left;
+    padding-left: $lg-spacing;
+  }
+
+  .tour-agenda {
+    section.schedule {
+      .schedule-grid {
+
+        .background-container {
+          margin-bottom: $lg-spacing;
+        }
+
+        .time, .content {
+          padding: $lg-spacing;
+        }
+
+        .time {
+          display: flex;
+          align-items: center;
+          justify-content: left;
+
+          > div {
+            flex-grow: 1;
+          }
+
+          .clock {
+            svg {
+              width: 50px; height: 50px;
+              background: $dark-red;
+              border-radius: 50%;
+
+              circle {
+                fill: $dark-red;
+                stroke: $orange;
+                stroke-width: 32;
+              }
+            }
+
+            &.midday {
+              svg {
+                transform: rotate(-120deg); /*hour starting point from 3:00 - (360/12 * hour) */
+
+                circle {
+                  stroke-dasharray: 25 100; /*duration as percentage: 100/12 * hours */
+                }
+              }
+            }
+
+            &.afternoon {
+              svg {
+                transform: rotate(-30deg);
+
+                circle {
+                  stroke-dasharray: 33 100;
+                }
+              }
+            }
+
+            &.evening {
+              svg {
+                transform: rotate(90deg);
+
+                circle {
+                  stroke-dasharray: 33 100;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .factory-agenda {
+    section.schedule {
+      .schedule-grid {
+        .side-program {
+          display: flex;
+
+          .pure-g {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .side-program-inner {
+            display: flex;
+            flex-direction: column;
+
+            .background-container {
+              margin-left: $md-spacing;
+              display: flex;
+              flex-grow: 1;
+              align-items: center;
+            }
+          }
+
+        }
+
+        .background-container {
+          margin-bottom: $lg-spacing;
+        }
+
+        .time, .content {
+          padding: $lg-spacing;
+        }
+
+        .time {
+          display: flex;
+          align-items: center;
+          justify-content: left;
+
+          > div {
+            flex-grow: 1;
+          }
+
+          .clock {
+            svg {
+              width: 50px; height: 50px;
+              background: $dark-red;
+              border-radius: 50%;
+
+              circle {
+                fill: $dark-red;
+                stroke: $orange;
+                stroke-width: 32;
+              }
+            }
+
+            &.morning {
+              svg {
+                transform: rotate(-180deg); /*hour starting point from 3:00 - (360/12 * hour) */
+
+                circle {
+                  stroke-dasharray: 25 100; /*duration as percentage: 100/12 * hours */
+                }
+              }
+            }
+
+            &.lunch {
+              svg {
+                transform: rotate(-90deg);
+
+                circle {
+                  stroke-dasharray: 13 100;
+                }
+              }
+            }
+
+            &.afternoon {
+              svg {
+                transform: rotate(-45deg);
+
+                circle {
+                  stroke-dasharray: 29 100;
+                }
+              }
+            }
+
+            &.evening {
+              svg {
+                transform: rotate(60deg);
+
+                circle {
+                  stroke-dasharray: 17 100;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+section#tracks-display {
+  .tracks {
+    .track {
+      padding: $md-spacing;
+      text-align: center;
+      transition: background 0.3s ease-in-out;
+      height: 100%;
+
+      .hide-unless-active {
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+        font-weight: $bold;
+      }
+
+      img {
+        margin-top: $md-spacing;
+        height: 100px;
+      }
+
+      &.active {
+        background: $dark-red;
+        color: $white !important;
+
+        img {
+          filter: brightness(100);
+        }
+
+        .hide-unless-active {
+          opacity: 1;
+        }
+      }
+
+      .btn {
+        color: $dark-red;
+        border-color: $dark-red;
+        margin-bottom: $md-spacing;
+        margin-top: $md-spacing;
+        text-transform: uppercase;
+      }
+
+      .disabled {
+        color: $light-gray;
+        cursor: auto;
+      }
+    }
+  }
+
+  .pure-g, .pure-u-1 {
+    display: flex;
+  }
+}
+
+section#cocreation_process {
+  .cocreation_process {
+    margin-top: $lg-spacing;
+    margin-bottom: $md-spacing;
+  }
+
+  .slick-dots {
+    position: relative;
+    bottom: 0;
+
+    li {
+      padding: 0 10%;
+
+      button {
+        background-color: $off-white;
+        border-radius: 50%;
+
+        &:before {
+          font-size: $h3-size;
+          top: -60px;
+          font-family: $title-font;
+          color: $orange;
+          width: 100%;
+          font-family: $title-font;
+        }
+      }
+
+      &:before {
+        content: '';
+        width: 0%;
+        outline: 2px solid $off-white;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: -51%;
+      }
+
+      &:after {
+        content: '';
+        width: 0%;
+        outline: 2px solid $dark-red;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        transition: width 0.5s ease-in-out;
+        left: -51%;
+      }
+
+      &:nth-of-type(1) {
+        &:after {
+          content: none;
+        }
+
+        button {
+          &:before {
+            content: 'Connect';
+          }
+        }
+      }
+
+      &:nth-of-type(2) {
+        &:before {
+          width: 100%;
+        }
+
+        button {
+          &:before {
+            content: 'Ideate';
+          }
+        }
+      }
+
+      &:nth-of-type(3) {
+        &:before {
+          width: 100%;
+        }
+
+        button {
+          &:before {
+            content: 'Launch';
+          }
+        }
+      }
+
+      &.slick-active, &.still-active {
+        button {
+          background-color: $dark-red;
+        }
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .content-container {
+    padding: $sm-spacing;
+
+    &.centered {
+      text-align: center;
+      justify-content: center;
+    }
+
+    .image {
+      max-width: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+  }
+}
+
+section#partners {
+  .partner-group {
+    margin-bottom: 60px;
+
+    .logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    img {
+      max-width: 120px;
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+
+      &:not(#endeva-logo) {
+        margin-left: 40px;
+      }
+
+      &#endeva-logo {
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+section#participants {
+  padding-bottom: $xl-spacing;
+
+    .slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        filter: grayscale(1);
+        max-width: 80px;
+        margin: $sm-spacing;
+      }
+    }
+}
+
+.background-container-sm {
+  background: $off-white;
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  z-index: -1;
+}
+
+.hidden {
+  display: none;
+}

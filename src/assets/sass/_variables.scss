@@ -1,0 +1,55 @@
+
+/* COLOURS */
+
+$orange: #DA900A;
+$light-blue: #AAC3DC;
+$dark-blue: #2F4858;
+$dark-red: #AB3911;
+$off-white: #F5EFED;
+$black: #0F0A0A;
+$white: #FFFFFF;
+$light-gray: #CCCCCC;
+
+
+$yellow: #FCB239;
+$green: #005E3F;
+$purple: #6D5B97;
+
+$primary: $yellow;
+$secondary: $green;
+$highlight: $purple;
+$error: $orange;
+
+$black: #000000;
+$dark-grey: #404040;
+$light-grey: #f3f7f6;
+$white: #fff;
+
+
+/* FONTS AND SIZES */
+
+$primary-font: 'Roboto', Helvetica, Arial, sans-serif;
+$title-font: 'Averia Serif Libre', cursive;
+$numbers-font: 'Averia Serif Libre', serif;
+
+$base-size: 18px;
+$lg-size: 1.4em;
+$sm-size: 0.9em;
+
+$h1-size: 60px;
+$h2-size: ceil($h1-size * 0.80);
+$h3-size: ceil($h1-size * 0.60);
+
+$light: 100;
+$bold: 400;
+$extrabold: 700;
+
+$base-line-height: 1.5;
+
+/* PADDING AND MARGINS */
+
+$sm-spacing: 10px;
+$md-spacing: 20px;
+$lg-spacing: 40px;
+$xl-spacing: 100px;
+$navbar-height: 64px;

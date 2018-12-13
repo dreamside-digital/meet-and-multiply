@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre|Fredericka+the+Great|Kreon|Playfair+Display|Stardos+Stencil|Roboto:300,500|Roboto+Slab:700');
+
+body {
+  font-family: $primary-font;
+  font-weight: $light;
+  color: $dark-blue;
+  font-size: $base-size;
+  overflow-x: hidden;
+  line-height: $base-line-height;
+
+  h1, h2 {
+    &.subtitle {
+      text-align: center;
+      margin-bottom: $lg-spacing;
+    }
+  }
+
+  h1 {
+    font-size: $h2-size;
+  }
+
+  h2 {
+    font-size: $h2-size;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+
+  p {
+    margin: 0.5em 0;
+  }
+
+  a {
+    color: $dark-blue;
+
+    a:hover, a:active {
+      color: $light-blue
+    }
+
+    a:visited {
+      color: $dark-blue;
+    }
+  }
+
+  .headline {
+    font-size: $lg-size;
+    text-align: center;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .small {
+    font-size: $sm-size
+  }
+
+  .underlined {
+    border-bottom: 2px solid $light-blue;
+    padding-bottom: $sm-spacing;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}

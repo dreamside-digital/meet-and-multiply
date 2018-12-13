@@ -45,7 +45,6 @@ class Navigation extends React.Component {
           </div>
             <div className="inner-nav desktop-nav">
               <ul className="clearlist scroll-nav local-scroll">
-                <li className="active"><a href="#home">Home</a></li>
                 <li><a href="#originators">Originators</a></li>
                 <li><a href="#call-to-action">Adopters</a></li>
                 <li><a href="#partners">Partners</a></li>
@@ -53,7 +52,7 @@ class Navigation extends React.Component {
                 <li><a href="#contact">Event Info</a></li>
                 <li><a href="/faqs">FAQ</a></li>
                 <li>
-                  <a href="#apply"><span className="btn btn-mod btn-color btn-circle">Subscribe</span></a>
+                  <a href="#apply"><span className="btn btn-mod btn-color btn-circle">Notify me</span></a>
                 </li>
               </ul>
             </div>

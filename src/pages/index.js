@@ -19,6 +19,7 @@ import PlainText from "../components/editables/PlainText";
 import Action from "../components/editables/Action";
 import EditableButton from "../components/editables/Button";
 
+import Partner from "../components/home/Partner";
 
 
 const PAGE_ID = "home"
@@ -55,9 +56,46 @@ class HomePage extends React.Component {
     this.props.onUpdatePageData(PAGE_ID, id, content);
   };
 
+  addPartner = () => {
+    const partnerArray = [...this.props.pageData.content.partners]
+    const newPartner = {
+      "logo" : {
+        "imageSrc" : "/images/favicon.png"
+      },
+      "name" : {
+        "text" : "Partner name"
+      },
+      "description" : {
+        "text" : "Partner description"
+      }
+    }
+
+    partnerArray.push(newPartner)
+    this.props.onUpdatePageData(PAGE_ID, "partners", partnerArray)
+  };
+
+  editPartner = (index, field) => content => {
+    const arr = [...this.props.pageData.content.partners];
+    const updated = {
+      ...arr[index],
+      [field]: content
+    };
+
+    arr[index] = updated;
+
+    this.props.onUpdatePageData(PAGE_ID, "partners", arr);
+  };
+
+  deletePartner = i => () => {
+    const arr = [...this.props.pageData.content.partners]
+    arr.splice(i, 1)
+    this.props.onUpdatePageData(PAGE_ID, "partners", arr)
+  };
+
   render() {
     const content = this.props.pageData ? this.props.pageData.content : {};
     const title = this.props.pageData ? this.props.pageData.title : "";
+    const partners = content["partners"] || [];
 
     return (
       <Layout>
@@ -70,23 +108,23 @@ class HomePage extends React.Component {
                       <div className="home-text">
 
                           <h1 className="hs-line-2 mt-0 mb-40 mb-xs-20">
-                              <PlainText content={content["landing-title"]} />
+                              <PlainText content={content["landing-title"]} onSave={this.saveHandler("landing-title")} />
                           </h1>
 
                           <h2 className="hs-line-11 mb-20 mb-xs-10">
-                              <PlainText content={content["landing-subtitle"]} />
+                              <PlainText content={content["landing-subtitle"]} onSave={this.saveHandler("landing-subtitle")} />
                           </h2>
 
                           <h3 className="hs-line-4 mb-20 mb-xs-10">
                             <strong>
-                              <PlainText content={content["landing-date-location"]} />
+                              <PlainText content={content["landing-date-location"]} onSave={this.saveHandler("landing-date-location")} />
                             </strong>
                           </h3>
 
                           <div className="local-scroll">
                               <a href="#overview" className="btn btn-mod btn-large btn-w hidden-xs">Learn more</a>
                               <span className="hidden-xs">&nbsp;</span>
-                              <a href="#apply" className="btn btn-mod btn-large btn-color" target="_blank">Subscribe</a>
+                              <a href="#apply" className="btn btn-mod btn-large btn-color" target="_blank">Notify me</a>
                           </div>
 
                       </div>
@@ -109,12 +147,16 @@ class HomePage extends React.Component {
 
                       <div className="split-section-wrapper">
 
-                          <h1 className="section-title"><PlainText content={content["overview-title"]} /></h1>
+                          <h1 className="section-title">
+                            <PlainText content={content["overview-title"]} onSave={this.saveHandler("overview-title")} />
+                          </h1>
 
-                          <h2 className="section-heading uppercase strong"><PlainText content={content["overview-subtitle"]} /></h2>
+                          <h2 className="section-heading uppercase strong">
+                            <PlainText content={content["overview-subtitle"]} onSave={this.saveHandler("overview-subtitle")} />
+                          </h2>
 
                           <div className="section-text mb-60">
-                            <Paragraph content={content["overview-description"]} />
+                            <Paragraph content={content["overview-description"]} onSave={this.saveHandler("overview-description")} />
                           </div>
 
                           <div className="row alt-features-grid">
@@ -164,16 +206,16 @@ class HomePage extends React.Component {
                       <div className="col-md-8 col-md-offset-2 align-center">
 
                           <h1 className="section-title mb-10">
-                              <PlainText content={content["originators-title"]} />
+                              <PlainText content={content["originators-title"]} onSave={this.saveHandler("originators-title")} />
                           </h1>
                           <h2 className="section-heading">
-                              <PlainText content={content["originators-subtitle"]} />
+                              <PlainText content={content["originators-subtitle"]} onSave={this.saveHandler("originators-subtitle")} />
                           </h2>
 
                           <div className="section-line mb-50 mb-xs-30"></div>
 
                           <div className="section-text mb-80 mb-xs-50">
-                            <Paragraph content={content["originators-description"]} />
+                            <Paragraph content={content["originators-description"]} onSave={this.saveHandler("originators-description")} />
                           </div>
 
                       </div>
@@ -343,15 +385,15 @@ class HomePage extends React.Component {
                       <div className="col-md-8 col-md-offset-2 align-center">
 
                           <h1 className="section-title large">
-                            <PlainText content={content["adopters-title"]} />
+                            <PlainText content={content["adopters-title"]} onSave={this.saveHandler("adopters-title")} />
                           </h1>
 
                           <h2 className="section-heading uppercase strong">
-                            <PlainText content={content["adopters-subtitle"]} />
+                            <PlainText content={content["adopters-subtitle"]} onSave={this.saveHandler("adopters-subtitle")} />
                           </h2>
 
                           <div className="section-text white mb-50 mb-xs-30">
-                            <Paragraph content={content["adopters-description"]} />
+                            <Paragraph content={content["adopters-description"]} onSave={this.saveHandler("adopters-description")} />
                           </div>
 
                           <div className="local-scroll">
@@ -373,17 +415,17 @@ class HomePage extends React.Component {
                       <div className="col-md-8 col-md-offset-2 align-center">
 
                           <h1 className="section-title mb-10">
-                            <PlainText content={content["partners-title"]} />
+                            <PlainText content={content["partners-title"]} onSave={this.saveHandler("partners-title")} />
                           </h1>
 
                           <h2 className="section-heading">
-                            <PlainText content={content["partners-subtitle"]} />
+                            <PlainText content={content["partners-subtitle"]} onSave={this.saveHandler("partners-subtitle")} />
                           </h2>
 
                           <div className="section-line mb-50 mb-xs-30"></div>
 
                           <div className="section-text mb-80 mb-xs-50">
-                            <Paragraph content={content["partners-description"]} />
+                            <Paragraph content={content["partners-description"]} onSave={this.saveHandler("partners-description")} />
                           </div>
 
                       </div>
@@ -392,96 +434,11 @@ class HomePage extends React.Component {
 
                   <div className="row multi-columns-row service-grid">
 
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/endeva.png" alt="Endeva" />
-                              </div>
-                              <h3 className="service-title">Endeva</h3>
-                              Experts in accelerating inclusive business innovations.
-                          </div>
-                      </div>
+                    { partners.map((entity, i) => <Partner key={`partner-${i}`} index={i} partner={entity} onDelete={this.props.isEditingPage ? this.deletePartner : null} onSave={this.editPartner} />) }
 
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/idb.png" alt="IDB" />
-                              </div>
-                              <h3 className="service-title">IDB</h3>
-                              The IDB is the main source of multilateral financing in Latin America. It provides solutions to development challenges and support in the key areas of the region.
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/iban.png" alt="IBAN" />
-                              </div>
-                              <h3 className="service-title">IBAN</h3>
-                              The Inclusive Business Action Network creates a vibrant and dynamic global pivotal point for the global inclusive business community.
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/bopinc.png" alt="BoP Innovation Center" />
-                              </div>
-                              <h3 className="service-title">BoP Innovation Center</h3>
-                              The BoP Innovation Center facilitates sustainable inclusive business in low-income markets.
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/snv_logo.png" alt="SNV" />
-                              </div>
-                              <h3 className="service-title">SNV</h3>
-                              SNV Netherlands Development Organisation is a non-profit, international development organisation, established in the Netherlands in 1965.
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/adb.png" alt="ADB" />
-                              </div>
-                              <h3 className="service-title">ADB</h3>
-                              Since its founding in 1966, ADB has been driven by an inspiration and dedication to improving people’s lives in Asia and the Pacific.
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/connovo.png" alt="Connovo" />
-                              </div>
-                              <h3 className="service-title">Connovo</h3>
-                              Connovo is a social business builder. We scale the impact of successful social businesses through a unique replication process.
-                          </div>
-                      </div>
-
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/r4d.jpg" alt="R4D" />
-                              </div>
-                              <h3 className="service-title">Results for Development</h3>
-                              Results for Development Institute (R4D) is a non-profit organization whose mission is to unlock solutions to tough development challenges that prevent people in low- and middle-income countries from realizing their full potential.
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-4 col-lg-4">
-                          <div className="service-item">
-                              <div className="service-icon logos">
-                                  <img src="logos/minka.png" alt="Minka Dev" />
-                              </div>
-                              <h3 className="service-title">Minka Dev</h3>
-                              Marketplace of business opportunities with high social environmental impact.
-                          </div>
-                      </div>
+                    <div className="col-sm-12">
+                      { this.props.isEditingPage && <Button onClick={this.addPartner}>Add partner</Button> }
+                    </div>
 
                   </div>
 
@@ -501,10 +458,10 @@ class HomePage extends React.Component {
                   <div className="align-left">
 
                       <h1 className="section-title mb-10">
-                        <PlainText content={content["news-title"]} />
+                        <PlainText content={content["news-title"]} onSave={this.saveHandler("news-title")} />
                       </h1>
                       <h2 className="section-heading">
-                        <PlainText content={content["news-subtitle"]} />
+                        <PlainText content={content["news-subtitle"]} onSave={this.saveHandler("news-subtitle")} />
                       </h2>
 
                       <div className="clearfix">
@@ -518,67 +475,67 @@ class HomePage extends React.Component {
 
                       <div className="col-sm-6 col-md-4 col-lg-4 mb-md-50 wow fadeIn" data-wow-delay="0.1s" data-wow-duration="2s">
                         <div className="post-prev-img post-prev-border">
-                          <Image content={content["news-item-1-image"]} />
+                          <Image content={content["news-item-1-image"]} onSave={this.saveHandler("news-item-1-image")} />
                         </div>
 
                         <div className="post-prev-title">
-                          <Action content={content["news-item-1-title"]} />
+                          <Action content={content["news-item-1-title"]} onSave={this.saveHandler("news-item-1-title")} />
                         </div>
 
                         <div className="post-prev-info">
-                          <Action content={content["news-item-1-author"]} />
+                          <Paragraph content={content["news-item-1-author"]} onSave={this.saveHandler("news-item-1-author")} />
                         </div>
 
                         <div className="post-prev-text">
-                          <Paragraph content={content["news-item-1-description"]} />
+                          <Paragraph content={content["news-item-1-description"]} onSave={this.saveHandler("news-item-1-description")} />
                         </div>
 
                         <div className="post-prev-more">
-                          <Action content={content["news-item-1-link"]} />
+                          <Action content={content["news-item-1-link"]} onSave={this.saveHandler("news-item-1-link")} />
                         </div>
                       </div>
 
                       <div className="col-sm-6 col-md-4 col-lg-4 mb-md-50 wow fadeIn" data-wow-delay="0.1s" data-wow-duration="2s">
                         <div className="post-prev-img post-prev-border">
-                          <Image content={content["news-item-2-image"]} />
+                          <Image content={content["news-item-2-image"]} onSave={this.saveHandler("news-item-2-image")} />
                         </div>
 
                         <div className="post-prev-title">
-                          <Action content={content["news-item-2-title"]} />
+                          <Action content={content["news-item-2-title"]} onSave={this.saveHandler("news-item-2-title")} />
                         </div>
 
                         <div className="post-prev-info">
-                          <Action content={content["news-item-2-author"]} />
+                          <Paragraph content={content["news-item-2-author"]} onSave={this.saveHandler("news-item-2-author")} />
                         </div>
 
                         <div className="post-prev-text">
-                          <Paragraph content={content["news-item-2-description"]} />
+                          <Paragraph content={content["news-item-2-description"]} onSave={this.saveHandler("news-item-2-description")} />
                         </div>
 
                         <div className="post-prev-more">
-                          <Action content={content["news-item-2-link"]} />
+                          <Action content={content["news-item-2-link"]} onSave={this.saveHandler("news-item-2-link")} />
                         </div>
                       </div>
 
                       <div className="col-sm-6 col-md-4 col-lg-4 mb-md-50 wow fadeIn" data-wow-delay="0.1s" data-wow-duration="2s">
                         <div className="post-prev-img post-prev-border">
-                          <Image content={content["news-item-3-image"]} />
+                          <Image content={content["news-item-3-image"]} onSave={this.saveHandler("news-item-3-image")} />
                         </div>
 
                         <div className="post-prev-title">
-                          <Action content={content["news-item-3-title"]} />
+                          <Action content={content["news-item-3-title"]} onSave={this.saveHandler("news-item-3-title")} />
                         </div>
 
                         <div className="post-prev-info">
-                          <Action content={content["news-item-3-author"]} />
+                          <Paragraph content={content["news-item-3-author"]} onSave={this.saveHandler("news-item-3-author")} />
                         </div>
 
                         <div className="post-prev-text">
-                          <Paragraph content={content["news-item-3-description"]} />
+                          <Paragraph content={content["news-item-3-description"]} onSave={this.saveHandler("news-item-3-description")} />
                         </div>
 
                         <div className="post-prev-more">
-                          <Action content={content["news-item-3-link"]} />
+                          <Action content={content["news-item-3-link"]} onSave={this.saveHandler("news-item-3-link")} />
                         </div>
                       </div>
 
@@ -594,11 +551,11 @@ class HomePage extends React.Component {
                       <div className="col-md-8 col-md-offset-2 align-center">
 
                           <h1 className="section-title large">
-                            <PlainText content={content["contact-title"]} />
+                            <PlainText content={content["contact-title"]} onSave={this.saveHandler("contact-title")} />
                           </h1>
 
                           <h2 className="section-heading uppercase strong">
-                            <PlainText content={content["contact-subtitle"]} />
+                            <PlainText content={content["contact-subtitle"]} onSave={this.saveHandler("contact-subtitle")} />
                           </h2>
 
                           <div className="local-scroll">
@@ -619,16 +576,16 @@ class HomePage extends React.Component {
                       <div className="col-md-8 col-md-offset-2 align-center">
 
                           <h1 className="section-title mb-10">
-                              Event information
+                            <PlainText content={content["event-info-title"]} onSave={this.saveHandler("event-info-title")} />
                           </h1>
                           <h2 className="section-heading">
-                              Meet & Multiply
+                            <PlainText content={content["event-info-subtitle"]} onSave={this.saveHandler("event-info-subtitle")} />
                           </h2>
 
                           <div className="section-line mb-50 mb-xs-30"></div>
 
                           <div className="section-text">
-                              Meet & Multiply is a side event taking place at the <a href="http://www.forobase2015.com/" target="_blank">IDB's Base Forum</a> in Mexico City. The Meet and Multiply event is by invitation only. Adopters should apply to attend and relevant ecosystem partners should contact us directly. The Base Forum is open to all participants. Please visit the website to attend the main Forum.
+                            <Paragraph content={content["event-info-description"]} onSave={this.saveHandler("event-info-description")} />
                           </div>
 
                       </div>
@@ -642,9 +599,11 @@ class HomePage extends React.Component {
                               <div className="alt-features-icon-1">
                                   <i className="fa fa-calendar-o"></i>
                               </div>
-                              <h3 className="alt-features-title-1">Programme</h3>
+                              <h3 className="alt-features-title-1">
+                                <PlainText content={content["event-info-cta1-title"]} onSave={this.saveHandler("event-info-cta1-title")} />
+                              </h3>
                               <div className="alt-features-descr-1 email-link">
-                                  <a href="programme-final-web.pdf" target="_blank">See the full programme</a>
+                                <Action content={content["event-info-cta1-link"]} onSave={this.saveHandler("event-info-cta1-link")} />
                               </div>
                           </div>
                       </div>
@@ -654,9 +613,11 @@ class HomePage extends React.Component {
                               <div className="alt-features-icon-1">
                                   <i className="fa fa-file-pdf-o"></i>
                               </div>
-                              <h3 className="alt-features-title-1">Agenda</h3>
+                              <h3 className="alt-features-title-1">
+                                <PlainText content={content["event-info-cta2-title"]} onSave={this.saveHandler("event-info-cta2-title")} />
+                              </h3>
                               <div className="alt-features-descr-1 email-link">
-                                  <a href="agenda-final-web.pdf" target="_blank">Open the PDF</a>
+                                <Action content={content["event-info-cta2-link"]} onSave={this.saveHandler("event-info-cta2-link")} />
                               </div>
                           </div>
                       </div>
@@ -666,17 +627,16 @@ class HomePage extends React.Component {
                               <div className="alt-features-icon-1">
                                   <i className="fa fa-envelope"></i>
                               </div>
-                              <h3 className="alt-features-title-1">Contact</h3>
+                              <h3 className="alt-features-title-1">
+                                <PlainText content={content["event-info-cta3-title"]} onSave={this.saveHandler("event-info-cta3-title")} />
+                              </h3>
                               <div className="alt-features-descr-1 email-link">
-                                  <a href="mailto:t.pasipanodya@endeva.org">t.pasipanodya@endeva.org</a>
+                                <Action content={content["event-info-cta3-link"]} onSave={this.saveHandler("event-info-cta3-link")} />
                               </div>
                           </div>
                       </div>
 
                   </div>
-
-
-
               </div>
           </section>
 
@@ -686,9 +646,15 @@ class HomePage extends React.Component {
                   <div className="row">
                       <div className="col-md-8 col-md-offset-2 align-center">
 
-                          <h1 className="section-title large">Interested in participating?</h1>
-                          <h2 className="section-heading mb-40">Subscribe</h2>
-                          <div className="section-text"><p>The pilot event was a success and we plan to do more events and follow-up activities. If you are interested in being kept up-to-date on Meet & Multiply please fill in the form below. </p><br /></div>
+                          <h1 className="section-title large">
+                            <PlainText content={content["apply-title"]} onSave={this.saveHandler("apply-title")} />
+                          </h1>
+                          <h2 className="section-heading mb-40">
+                            <PlainText content={content["apply-subtitle"]} onSave={this.saveHandler("apply-subtitle")} />
+                          </h2>
+                          <div className="section-text">
+                            <Paragraph content={content["apply-description"]} onSave={this.saveHandler("apply-description")} />
+                          </div>
 
                       </div>
                   </div>

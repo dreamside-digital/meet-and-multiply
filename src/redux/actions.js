@@ -188,7 +188,7 @@ export function createTrack(trackData) {
   return dispatch => {
     const db = firebase.database();
     db
-      .ref("tracks")
+      .ref("originators")
       .push(trackData)
       .then(snap => {
         dispatch(toggleNewTrackModal());
@@ -207,7 +207,7 @@ export function saveTrackContent(trackId, contentId, content) {
   return dispatch => {
     const db = firebase.database();
 
-    db.ref(`tracks/${trackId}/content/${contentId}/`).set(content, error => {
+    db.ref(`originators/${trackId}/content/${contentId}/`).set(content, error => {
       if (error) {
         return dispatch(
           showNotification(
@@ -236,7 +236,7 @@ export function saveTrackData(trackId, field, content) {
       [field]: content
     };
 
-    db.ref(`tracks/${trackId}`).set(data).then(res => {
+    db.ref(`originators/${trackId}`).set(data).then(res => {
       dispatch(updatePageData({ [field]: content }));
       dispatch(
         showNotification(

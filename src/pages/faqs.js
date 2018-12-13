@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 
 import Layout from "../layouts/default.js";
 import PlainText from "../components/editables/PlainText";
+import BackgroundImage from "../components/editables/BackgroundImage";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -94,26 +95,26 @@ class FrequentlyAskedQuestions extends React.Component {
     return (
       <Layout>
         <main className="page" id="top">
-          <section className="page-section bg-dark-alfa-30" id="faqs">
-            <div className="relative container align-left">
-              <div className="row">
-                <div className="col-md-8">
-                  <h1 className="section-heading mb-10 mb-xs-0">
-                    <PlainText
-                      content={content["faqs-title"]}
-                      onSave={this.saveHandler("faqs-title")}
-                    />
-                  </h1>
-                  <div className="hs-line-4 uppercase">
-                    <PlainText
-                      content={content["faqs-subtitle"]}
-                      onSave={this.saveHandler("faqs-subtitle")}
-                    />
+          <BackgroundImage content={content["header-bg"]} onSave={this.saveHandler("header-bg")} className="page-section bg-dark-alfa-30">
+              <div className="relative container align-left">
+                <div className="row">
+                  <div className="col-md-8">
+                    <h1 className="section-heading mb-10 mb-xs-0">
+                      <PlainText
+                        content={content["faqs-title"]}
+                        onSave={this.saveHandler("faqs-title")}
+                      />
+                    </h1>
+                    <div className="hs-line-4 uppercase">
+                      <PlainText
+                        content={content["faqs-subtitle"]}
+                        onSave={this.saveHandler("faqs-subtitle")}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+          </BackgroundImage>
 
           <section className="page-section">
             <div className="container relative">

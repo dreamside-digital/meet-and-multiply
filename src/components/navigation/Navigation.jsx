@@ -17,7 +17,7 @@ class Navigation extends React.Component {
       <nav className="main-nav js-stick">
         <div className="full-wrapper relative clearfix">
           <div className="nav-logo-wrap local-scroll">
-            <Link to="#top" className="logo">
+            <Link to="/#top" className="logo">
               <img src={logo} alt="Meet and Multiply" />
             </Link>
           </div>

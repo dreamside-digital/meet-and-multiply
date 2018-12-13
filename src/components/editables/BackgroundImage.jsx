@@ -1,41 +1,53 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Editable from "./Editable";
 import ImageEditor from "../editingTools/ImageEditor";
 
-import defaultImage from "../../assets/images/purple_bg";
 
-const BackgroundImage = ({ content, handleSave, children, overlay }) => {
-  const imageUrl = content && content.imageSrc ? content.imageSrc : defaultImage;
+const BackgroundImage = ({ content, onSave, children, className, ...rest }) => {
+  const { imageSrc } = content;
+
   const styles = {
     background: {
-      backgroundImage: `url('${imageUrl}')`,
+      backgroundImage: `url('${imageSrc}')`,
+      backgroundColor: "#ccc",
       height: 'inherit',
     }
   };
 
-  const onSave = updatedContent => {
-    handleSave(updatedContent);
+  const handleSave = newContent => {
+    onSave(newContent);
   };
 
   return (
     <Editable
       editor={ImageEditor}
-      handleSave={onSave}
-      content={content || {}}
+      handleSave={handleSave}
+      content={{ imageSrc }}
       editCaption={false}
       showChildren
       fullWidth
+      { ...rest }
     >
       <div
-        className={`item owl-bg-img`}
+        className={className}
         style={styles.background}
       >
-        { overlay && <div className="opacity-medium bg-dark-gray"></div> }
         {children}
       </div>
     </Editable>
   );
 };
+
+BackgroundImage.propTypes = {
+  content: PropTypes.shape({ imageSrc: PropTypes.string }).isRequired,
+  onSave: PropTypes.func.isRequired,
+}
+
+BackgroundImage.defaultProps = {
+  content: { imageSrc: '/images/camera.svg' },
+  onSave: content => console.log('Implement a function to save changes!', content),
+}
 
 export default BackgroundImage;

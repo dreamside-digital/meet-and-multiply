@@ -55,6 +55,7 @@ const innerContentStyles = {
 const fullWidthStyles = {
   ...innerContentStyles,
   editContainer: {
+    ...innerContentStyles.editContainer,
     padding: "0"
   },
   actions: {

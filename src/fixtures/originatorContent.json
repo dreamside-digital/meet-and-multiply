@@ -1,3 +1,112 @@
 {
-
+  "about-p1" : {
+    "text" : "<p>Description of the company</p>"
+  },
+  "about-p2" : {
+    "text" : "<p>Description continued</p>"
+  },
+  "adopter-profile-label" : {
+    "text" : "Adopter profile: "
+  },
+  "adopter-subtitle" : {
+    "text" : "What we are looking for in potential partners"
+  },
+  "adopter-title" : {
+    "text" : "Do you match the Adopter profile?"
+  },
+  "annual-turnover" : {
+    "text" : "> 1 million"
+  },
+  "business-model-description" : {
+    "text" : "<p>Description of the business model</p>"
+  },
+  "business-model-subtitle" : {
+    "text" : "The business model"
+  },
+  "business-model-title" : {
+    "text" : "How it works"
+  },
+  "cta-button" : {
+    "anchor" : "Apply now",
+    "link" : "/#apply"
+  },
+  "cta-subtitle" : {
+    "text" : "APPLY TO BE AN ADOPTER"
+  },
+  "cta-title" : {
+    "text" : "Interested in working with this company?"
+  },
+  "documentation-description" : {
+    "text" : "<p>Download this profile as a PDF or take a look at additional publications from or about this company.</p>"
+  },
+  "documentation-title" : {
+    "text" : "Further documentation"
+  },
+  "employees-count" : {
+    "text" : "1,000"
+  },
+  "founded-date" : {
+    "text" : "2015"
+  },
+  "header-subtitle" : {
+    "text" : "Tagline or short description"
+  },
+  "header-website" : {
+    "anchor" : "website",
+    "link" : "#"
+  },
+  "impact1-description" : {
+    "text" : "Description of impact"
+  },
+  "impact1-subtitle" : {
+    "text" : "Indicator"
+  },
+  "impact1-title" : {
+    "text" : "Impact"
+  },
+  "impact2-description" : {
+    "text" : "Description of impact"
+  },
+  "impact2-subtitle" : {
+    "text" : "Indicator"
+  },
+  "impact2-title" : {
+    "text" : "Impact"
+  },
+  "impact3-description" : {
+    "text" : "Description of impact"
+  },
+  "impact3-subtitle" : {
+    "text" : "Indicator"
+  },
+  "impact3-title" : {
+    "text" : "Impact"
+  },
+  "location-label" : {
+    "text" : "Location: "
+  },
+  "opportunity-subtitle" : {
+    "text" : "Growth Opportunity"
+  },
+  "opportunity-title" : {
+    "text" : "Recreate this model"
+  },
+  "profit-margin" : {
+    "text" : "15%"
+  },
+  "replication-tab1-title" : {
+    "anchor" : "Profile",
+    "link" : "#mini-one"
+  },
+  "replication-tab2-title" : {
+    "anchor" : "Profile",
+    "link" : "#mini-two"
+  },
+  "replication-tab3-title" : {
+    "anchor" : "Profile",
+    "link" : "#mini-three"
+  },
+  "sector-label" : {
+    "text" : "Sector: "
+  }
 }

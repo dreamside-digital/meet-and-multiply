@@ -5,19 +5,19 @@ import { Link } from "gatsby";
 import Editable from "./Editable";
 import LinkEditor from "../editingTools/LinkEditor";
 
-const LinkComponent = ({ link, anchor }) => {
+const LinkComponent = ({ link, anchor, ...props }) => {
   const externalLink = link.startsWith('https://') || link.startsWith('http://') || link.startsWith('mailto:');
 
   if (externalLink) {
     return (
-      <a href={ link }>
+      <a href={ link } {...props}>
         { anchor }
       </a>
     )
   }
 
   return (
-    <Link to={ link }>
+    <Link to={ link } {...props}>
       { anchor }
     </Link>
   )
@@ -25,12 +25,12 @@ const LinkComponent = ({ link, anchor }) => {
 
 
 
-const CustomLink = ({ className, ...props }) => {
+const CustomLink = ({ content, onSave, ...props }) => {
   const handleSave = newContent => {
-    props.onSave(newContent);
+    onSave(newContent);
   };
 
-  const { link, anchor } = props.content;
+  const { link, anchor } = content;
 
   return (
     <Editable
@@ -39,7 +39,7 @@ const CustomLink = ({ className, ...props }) => {
       content={{ link, anchor }}
       {...props}
     >
-      <LinkComponent anchor={anchor} link={link} />
+      <LinkComponent anchor={anchor} link={link} {...props} />
     </Editable>
   );
 };

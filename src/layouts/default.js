@@ -48,7 +48,7 @@ const DefaultLayout = props => (
         keywords="inclusive business, bottom of the pyramid, social enterprise, social entrepreneurship"
         viewport="width=device-width,initial-scale=1.0,maximum-scale=1"
       />
-      <link rel="icon" href={favicon} type="image/x-icon" />
+      <link rel="shortcut icon" href={favicon} type="image/png" />
     </Helmet>
     <Navigation />
     <Notification />

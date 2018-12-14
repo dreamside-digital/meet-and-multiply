@@ -28,18 +28,35 @@ const mapStateToProps = state => {
 };
 
 const Question = ({ faq, index, onSave, onDelete, isEditingPage }) => {
+  if (isEditingPage) {
+    return(
+      <>
+        <PlainText
+          content={faq["question"]}
+          onSave={onSave(index, "question")}
+        />
+        <PlainText
+          content={faq["answer"]}
+          onSave={onSave(index, "answer")}
+        />
+        <Button onClick={onDelete(index)}>Delete</Button>
+      </>
+    )
+  }
+
   return (
     <>
       <dt>
-      <a href=""><PlainText
-          content={faq["question"]}
-          onSave={onSave(index, "question")}
-        /></a>
+        <a href="">
+          <PlainText
+            content={faq["question"]}
+            onSave={onSave(index, "question")}
+          />
+        </a>
       </dt>
       <dd>
         <PlainText content={faq["answer"]} onSave={onSave(index, "answer")} />
       </dd>
-      {isEditingPage && <Button onClick={onDelete(index)}>Delete</Button>}
     </>
   );
 };

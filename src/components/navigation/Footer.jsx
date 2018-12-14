@@ -7,8 +7,6 @@ const Footer = props => {
         <div className="container">
 
             <div className="footer-social-links mb-60 mb-xs-40">
-                <a href="https://www.facebook.com/pages/Endeva/234763126582163" title="Facebook" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook"></i></a>
-                <a href="https://twitter.com/_Endeva" title="Twitter" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter"></i></a>
                 <a href="https://www.linkedin.com/grp/home?gid=4143187" title="LinkedIn+" target="_blank" rel="noopener noreferrer"><i className="fa fa-linkedin"></i></a>
             </div>
 

@@ -94,7 +94,7 @@ class FrequentlyAskedQuestions extends React.Component {
 
     return (
       <Layout>
-        <main className="page" id="top">
+        <main className="page">
           <BackgroundImage content={content["header-bg"]} onSave={this.saveHandler("header-bg")} className="page-section bg-dark-alfa-30">
               <div className="relative container align-left">
                 <div className="row">

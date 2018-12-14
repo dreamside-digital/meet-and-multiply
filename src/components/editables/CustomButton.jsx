@@ -8,11 +8,11 @@ import Button from "@material-ui/core/Button";
 
 
 const BtnComponent = ({ link, anchor, ...rest }) => {
-  const externalLink = link.startsWith('https://') || link.startsWith('http://');
+  const externalLink = link.startsWith('https://') || link.startsWith('http://') || link.startsWith('mailto:');
 
   if (externalLink) {
     return (
-      <Button color="secondary" href={ link } target='_blank' {...rest}>
+      <Button color="secondary" href={ link } {...rest}>
         { anchor }
       </Button>
     )

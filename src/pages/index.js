@@ -14,8 +14,10 @@ import Image from "../components/editables/Image";
 import PlainText from "../components/editables/PlainText";
 import CustomLink from "../components/editables/CustomLink";
 import CustomButton from "../components/editables/CustomButton";
+import BackgroundImage from "../components/editables/BackgroundImage";
 
 import Partner from "../components/home/Partner";
+// import OriginatorCard from "../components/home/OriginatorCard";
 
 
 const PAGE_ID = "home"
@@ -90,44 +92,43 @@ class HomePage extends React.Component {
 
   render() {
     const content = this.props.pageData ? this.props.pageData.content : {};
+    // const originators = this.props.data ? this.props.data.allOriginators.edges : [];
     const partners = content["partners"] || [];
 
     return (
       <Layout>
-        <main className="page" id="top">
+        <main className="page">
+          <BackgroundImage content={content["header-bg"]} onSave={this.saveHandler("header-bg")} className="home-section bg-dark-alfa-50 parallax-2 fixed-height-small" id="home">
+                <div className="js-height-parent container">
 
-          <section className="home-section bg-dark-alfa-50 parallax-2 fixed-height-small"  id="home">
-              <div className="js-height-parent container">
+                    <div className="home-content container">
+                        <div className="home-text">
 
-                  <div className="home-content container">
-                      <div className="home-text">
+                            <h1 className="hs-line-2 mt-0 mb-40 mb-xs-20">
+                                <PlainText content={content["landing-title"]} onSave={this.saveHandler("landing-title")} />
+                            </h1>
 
-                          <h1 className="hs-line-2 mt-0 mb-40 mb-xs-20">
-                              <PlainText content={content["landing-title"]} onSave={this.saveHandler("landing-title")} />
-                          </h1>
+                            <h2 className="hs-line-11 mb-20 mb-xs-10">
+                                <PlainText content={content["landing-subtitle"]} onSave={this.saveHandler("landing-subtitle")} />
+                            </h2>
 
-                          <h2 className="hs-line-11 mb-20 mb-xs-10">
-                              <PlainText content={content["landing-subtitle"]} onSave={this.saveHandler("landing-subtitle")} />
-                          </h2>
+                            <h3 className="hs-line-4 mb-20 mb-xs-10">
+                              <strong>
+                                <PlainText content={content["landing-date-location"]} onSave={this.saveHandler("landing-date-location")} />
+                              </strong>
+                            </h3>
 
-                          <h3 className="hs-line-4 mb-20 mb-xs-10">
-                            <strong>
-                              <PlainText content={content["landing-date-location"]} onSave={this.saveHandler("landing-date-location")} />
-                            </strong>
-                          </h3>
+                            <div className="local-scroll">
+                              <CustomButton content={content["landing-button-1"]} onSave={this.saveHandler("landing-button-1")} className="btn btn-mod btn-large btn-w hidden-xs" />
+                              <span className="hidden-xs">&nbsp;</span>
+                              <CustomButton content={content["landing-button-2"]} onSave={this.saveHandler("landing-button-2")} className="btn btn-mod btn-large btn-color" />
+                            </div>
 
-                          <div className="local-scroll">
-                            <CustomButton content={content["landing-button-1"]} onSave={this.saveHandler("landing-button-1")} className="btn btn-mod btn-large btn-w hidden-xs" />
-                            <span className="hidden-xs">&nbsp;</span>
-                            <CustomButton content={content["landing-button-2"]} onSave={this.saveHandler("landing-button-2")} className="btn btn-mod btn-large btn-color" />
-                          </div>
+                        </div>
+                    </div>
 
-                      </div>
-                  </div>
-
-              </div>
-          </section>
-
+                </div>
+          </BackgroundImage>
 
           <section className="split-section bg-gray" id="overview">
               <div className="clearfix relative">
@@ -222,164 +223,11 @@ class HomePage extends React.Component {
                       </div>
                   </div>
 
-
-                  <div className="row multi-columns-row">
-
-                      <div className="col-sm-6 col-md-3 col-lg-3 mb-md-30 wow fadeInUp">
-                          <div className="team-item">
-
-                              <div className="team-item-image" data-url="originators/jain-irrigation-s-l">
-
-                                  <img src="jain/jain.jpg" alt="Jain Irrigation" />
-
-                                  <div className="team-item-detail">
-
-                                      <h4 className="team-item-h">Jain Irrigation</h4>
-
-                                      <p>
-                                          <strong> Dr. Dilip N. Kulkarni</strong><br />President, Agri-Food Division</p><p><em>From micro-irrigation systems to an integrated farming system</em>
-                                      </p>
-
-                                      <div className="team-social-links">
-                                          <a href="originators/jain-irrigation-s-l" target="_blank"><i className="fa fa-plus-circle"></i></a>
-                                      </div>
-
-                                  </div>
-                              </div>
-
-                              <div className="team-item-descr">
-
-                                  <div className="team-item-name">
-                                      <a href="/originators/jain-irrigation-s-l">Jain Irrigation</a>
-                                  </div>
-
-                                  <div className="team-item-role">
-                                      Jain Irrigations Systems (JISL) provides smallholder farmers with an integrated farming system with a focus on micro-irrigation systems (MIS). They help farmers to achieve annual yield increases between 60%–130%, and income increases between $500-$6,000 per farm.
-                                  </div>
-
-                              </div>
-
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-3 col-lg-3 mb-md-30 wow fadeInUp" data-wow-delay="0.1s">
-                          <div className="team-item">
-                              <div className="team-item-image" data-url="originators/ekutir">
-
-                                  <img src="ekutir/ekutir-photo.jpg" alt="eKutir" />
-
-                                  <div className="team-item-detail">
-
-                                      <h4 className="team-item-h">eKutir</h4>
-
-                                      <p>
-                                          <strong> KC Mishra</strong><br />Founder of eKutir</p><p><em>Using ICT to link smallholder farmers to markets and service providers</em>
-
-                                      </p>
-
-                                      <div className="team-social-links">
-                                          <a href="originators/ekutir" target="_blank"><i className="fa fa-plus-circle"></i></a>
-                                      </div>
-
-                                  </div>
-                              </div>
-                              <div className="team-item-descr">
-
-                                  <div className="team-item-name">
-                                      <a href="originators/ekutir">eKutir</a>
-                                  </div>
-
-                                  <div className="team-item-role">
-                                      Currently eKutir reaches around 70,000 marginalized farmers with major impacts on income, nutrition and sanitation of farmers. Farmers earn at least 200 USD per month by working with eKutir to increase yields and reduce costs.
-                                  </div>
-
-                              </div>
-
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-3 col-lg-3 mb-sm-30 wow fadeInUp" data-wow-delay="0.2s">
-                          <div className="team-item">
-
-                              <div className="team-item-image" data-url="originators/ross-clinics">
-
-                                  <a href="/originators/ross-clinics">
-                                      <img src="ross/rossclinics.jpg" alt="Ross Clinics" />
-                                  </a>
-
-                                  <div className="team-item-detail">
-
-                                      <h4 className="team-item-h">Ross Clinics</h4>
-
-                                      <p><strong> Dr. Devashish Saini</strong><br />Founder of Ross Clinics</p><p><em>Reviving the family physician model for all socio-economic levels in India</em></p>
-
-                                      <div className="team-social-links">
-                                          <a href="originators/ross-clinics" target="_blank"><i className="fa fa-plus-circle"></i></a>
-                                      </div>
-
-                                  </div>
-                              </div>
-
-                              <div className="team-item-descr">
-
-                                  <div className="team-item-name">
-                                      <a href="originators/ross-clinics">Ross Clinics</a>
-                                  </div>
-
-                                  <div className="team-item-role">
-                                      Ross Clinics is bringing back the family physician model to India. The small clinics provide primary care to families at all levels of the socio-economic spectrum. 90% of their clients are low or middle income.
-                                  </div>
-
-                              </div>
-
-                          </div>
-                      </div>
-
-                      <div className="col-sm-6 col-md-3 col-lg-3 mb-sm-30 wow fadeInUp" data-wow-delay="0.3s">
-                          <div className="team-item">
-
-                              <div className="team-item-image" data-url="originators/narayana-health">
-
-                                  <a href="/originators/ross-clinics">
-                                      <img src="narayana/narayana-sm.png" alt="Narayana Health" />
-                                  </a>
-
-                                  <div className="team-item-detail">
-
-                                      <h4 className="team-item-h">Narayana Health</h4>
-
-                                      <p><strong> Dr. Devi Shetty</strong><br />Founder of Narayana Health</p><p><em>Bringing low-cost, high-quality specialty care to the masses</em></p>
-
-                                      <div className="team-social-links">
-                                          <a href="originators/narayana-health" target="_blank"><i className="fa fa-plus-circle"></i></a>
-                                      </div>
-
-                                  </div>
-                              </div>
-
-                              <div className="team-item-descr">
-
-                                  <div className="team-item-name">
-                                      <a href="originators/narayana-health" target="_blank">Narayana Health</a>
-                                  </div>
-
-                                  <div className="team-item-role">
-                                      Narayana Health is a multi-specialty hospital chain in India, headquartered in Bangalore. The company’s mission is to provide affordable high-quality specialty care for all.
-                                  </div>
-
-                              </div>
-
-                          </div>
-                      </div>
-
-
-                  </div>
-
               </div>
           </section>
 
 
-          <section className="page-section bg-dark-alfa-90 bg-scroll call-to-action" id="call-to-action">
+          <BackgroundImage content={content["adopters-bg"]} onSave={this.saveHandler("adopters-bg")} className="page-section bg-dark-alfa-90 bg-scroll call-to-action" id="call-to-action">
               <div className="container relative">
 
                   <div className="row">
@@ -407,7 +255,7 @@ class HomePage extends React.Component {
                   </div>
 
               </div>
-          </section>
+          </BackgroundImage>
 
           <section className="page-section" id="partners">
               <div className="container relative">
@@ -545,7 +393,7 @@ class HomePage extends React.Component {
               </div>
           </section>
 
-          <section className="small-section bg-color-alfa-90 bg-scroll call-to-action" data-background="full-width-images/section-bg-4.jpg" id="contact-us">
+          <BackgroundImage content={content["contact-bg"]} onSave={this.saveHandler("contact-bg")} className="small-section bg-color-alfa-90 bg-scroll call-to-action" id="contact-us">
               <div className="container relative">
 
                   <div className="row">
@@ -569,7 +417,7 @@ class HomePage extends React.Component {
                   </div>
 
               </div>
-          </section>
+          </BackgroundImage>
 
           <section className="page-section" id="contact">
               <div className="container relative">
@@ -659,6 +507,89 @@ class HomePage extends React.Component {
                           </div>
 
                       </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-md-10 col-md-offset-1 application-form">
+
+                      <form accept-charset="UTF-8" action="/subscribers" method="post"className="form contact-form" id="contact_form" autocomplete="off" data-toggle="validator">
+                        <div className="clearfix">
+                          <div className="cf-left-col">
+                            <div className="form-group">
+                                <input type="text" name="subscriber[firstname]" id="first-name" className="input-lg form-control" placeholder="First name" pattern=".{3,100}" required data-error="Please enter your name." />
+                                <div className="help-block with-errors"></div>
+                            </div>
+
+                            <div className="form-group">
+                                <input type="text" name="subscriber[lastname]" id="last-name" className="input-lg form-control" placeholder="Last name" pattern=".{3,100}" required data-error="Please enter your last name." />
+                                <div className="help-block with-errors"></div>
+                            </div>
+
+                            <div className="form-group">
+                                <input type="email" name="subscriber[email]" id="email" className="input-lg form-control" placeholder="Email" pattern=".{5,100}" required data-error="Please enter a valid email address." />
+                                <div className="help-block with-errors"></div>
+                            </div>
+
+                            <div className="form-group">
+                              <label className="form-label" for="orgtype">Do you see your self as a potential Originator, Adopter or Partner?</label>
+                              <select name="subscriber[role]" id="role" className="input-lg form-control" placeholder="Which role interests you?" pattern=".{5,100}" required data-error="Please select an item from the list.">
+                                  <option selected="selected" disabled="disabled" value="">Choose one</option>
+                                  <option value="Originator">Originator: Your company is interested in expanding or replicating in a new region.</option>
+                                  <option value="Adopter">Adopter: You are interested in adopting or replicating a social business model. </option>
+                                  <option value="Partner">Partner: You wish to provide support for the replication of social business models.</option>
+                              </select>
+                              <div className="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div className="cf-right-col">
+                            <div className="form-group">
+                                <input type="text" name="subscriber[orgname]" id="orgname" className="input-lg form-control" placeholder="Organization name" pattern=".{5,100}" />
+                                <div className="help-block with-errors"></div>
+                            </div>
+
+                            <div className="form-group">
+                                <input type="text" name="subscriber[sector]" id="sector" className="input-lg form-control" placeholder="Sector of interest" pattern=".{5,100}" />
+                                <div className="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="form-label" for="region">What is your region of interest?</label>
+                              <select name="subscriber[region]" id="region" class="input-lg form-control" placeholder="Region of interest" pattern=".{5,100}" >
+                                  <option selected="selected" disabled="disabled" value="">Choose one</option>
+                                  <option value="East Asia and Pacific">East Asia and Pacific</option>
+                                  <option value="Europe and Central Asia">Europe and Central Asia</option>
+                                  <option value="Latin America & the Caribbean">Latin America & the Caribbean</option>
+                                  <option value="Middle East and North Africa">Middle East and North Africa</option>
+                                  <option value="North America">North America</option>
+                                  <option value="South Asia">South Asia</option>
+                                  <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
+                              </select>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div className="clearfix">
+                            <div className="cf-left-col">
+                              <div className="form-tip pt-20">
+                                  <i className="fa fa-info-circle"></i> All the fields are required
+                              </div>
+                            </div>
+
+                            <div className="cf-right-col">
+                              <div className="align-right pt-10">
+                                  <button type="submit" className="submit_btn btn btn-mod btn-color btn-large" id="submit_btn">Submit</button>
+                              </div>
+                            </div>
+                          </div>
+
+
+                            <div id="result"></div>
+
+                          </div>
+                        </form>
+
+                    </div>
                   </div>
 
               </div>

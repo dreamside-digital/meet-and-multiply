@@ -2,7 +2,7 @@ import React from "react";
 import slugify from "slugify";
 
 import { connect } from "react-redux";
-import { toggleNewTrackModal, createTrack } from "../../redux/actions";
+import { toggleNewOriginatorModal, createOriginator } from "../../redux/actions";
 
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -13,28 +13,29 @@ import TextField from "@material-ui/core/TextField";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 
-import defaultContentJSON from "../../fixtures/trackContent.json";
+import defaultContentJSON from "../../fixtures/originatorContent.json";
 
 const mapStateToProps = state => {
   return {
-    showNewTrackModal: state.adminTools.showNewTrackModal
+    showNewOriginatorModal: state.adminTools.showNewOriginatorModal
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleNewTrackModal: () => {
-      dispatch(toggleNewTrackModal());
+    toggleNewOriginatorModal: () => {
+      dispatch(toggleNewOriginatorModal());
     },
-    createTrack: trackData => {
-      dispatch(createTrack(trackData));
+    createOriginator: originatorData => {
+      dispatch(createOriginator(originatorData));
     }
   };
 };
 
-class CreateTrackModal extends React.Component {
+class CreateOriginatorModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +43,7 @@ class CreateTrackModal extends React.Component {
         title: "",
         tech: "",
         order: 0,
-        year: 2017,
+        year: 2019,
       }
     };
     this.updatePage = (field, value) => {
@@ -63,51 +64,42 @@ class CreateTrackModal extends React.Component {
   }
 
   _onSubmit() {
-    const slugifiedTitle = slugify(this.state.page.tech, {
+    const slugifiedTitle = slugify(this.state.page.title, {
       lower: true,
       remove: /[$*_+~.,()'"!\-:@%^&?=]/g
     })
-    const trackData = {
+    const originatorData = {
       title: this.state.page.title,
-      tech: this.state.page.tech,
-      slug: `/tracks/${slugifiedTitle}`,
+      slug: `/originators/${slugifiedTitle}`,
       year: this.state.page.year,
-      page_type: "track",
-      template: "track.js",
+      page_type: "originator",
+      template: "originator.js",
       navigation: {
         order: parseInt(this.state.page.order),
-        displayTitle: this.state.page.tech,
+        displayTitle: this.state.page.title,
       },
       content: defaultContentJSON
     };
-    this.props.createTrack(trackData);
+    this.props.createOriginator(originatorData);
   }
 
   render() {
-    const open = Boolean(this.props.showNewTrackModal);
+    const open = Boolean(this.props.showNewOriginatorModal);
 
     return (
       <Dialog open={open} aria-labelledby="create-page-dialogue">
-        <DialogTitle id="create-page-dialogue">Add new track</DialogTitle>
+        <DialogTitle id="create-page-dialogue">
+          Add Originator
+        </DialogTitle>
 
         <DialogContent>
           <FormControl fullWidth margin="normal">
             <TextField
               className="form-control"
               type="text"
-              label={"Track title"}
+              label={"Originator name"}
               value={this.state.page.title}
               onChange={e => this.updatePage("title", e.target.value)}
-            />
-          </FormControl>
-
-          <FormControl fullWidth margin="normal">
-            <TextField
-              className="form-control"
-              type="text"
-              label={"Track technology"}
-              value={this.state.page.tech}
-              onChange={e => this.updatePage("tech", e.target.value)}
             />
           </FormControl>
 
@@ -122,13 +114,14 @@ class CreateTrackModal extends React.Component {
           </FormControl>
 
           <FormControl fullWidth margin="normal">
+            <InputLabel htmlFor="year">Year</InputLabel>
             <Select
               value={this.state.page.year}
               onChange={e => this.updatePage("year", e.target.value)}
               input={<Input name="year" id="year" />}
               name="year"
             >
-              <MenuItem value={2017}>2017</MenuItem>
+              <MenuItem value={2015}>2015</MenuItem>
               <MenuItem value={2019}>2019</MenuItem>
             </Select>
           </FormControl>
@@ -136,11 +129,11 @@ class CreateTrackModal extends React.Component {
         </DialogContent>
 
         <DialogActions>
-          <Button color="default" onClick={this.props.toggleNewTrackModal}>
+          <Button color="default" onClick={this.props.toggleNewOriginatorModal}>
             Close
           </Button>
           <Button color="primary" onClick={this.onSubmit}>
-            Create Track
+            Create Originator
           </Button>
         </DialogActions>
       </Dialog>
@@ -148,4 +141,4 @@ class CreateTrackModal extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateTrackModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateOriginatorModal);

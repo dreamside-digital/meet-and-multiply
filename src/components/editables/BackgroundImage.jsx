@@ -5,7 +5,7 @@ import Editable from "./Editable";
 import ImageEditor from "../editingTools/ImageEditor";
 
 
-const BackgroundImage = ({ content, onSave, children, className, ...rest }) => {
+const BackgroundImage = ({ content, onSave, children, ...rest }) => {
   const { imageSrc } = content;
 
   const styles = {
@@ -28,11 +28,10 @@ const BackgroundImage = ({ content, onSave, children, className, ...rest }) => {
       editCaption={false}
       showChildren
       fullWidth
-      { ...rest }
     >
       <div
-        className={className}
         style={styles.background}
+        {...rest}
       >
         {children}
       </div>

@@ -24,26 +24,29 @@
                 scrollTop: hash_offset
             });
         }
-
     });
 
     $(document).ready(function(){
 
         $(window).trigger("resize");
 
-        init_classic_menu();
-        init_lightbox();
-        init_parallax();
-        init_shortcodes();
-        init_tooltips();
-        // init_counters();
-        init_team();
-        initPageSliders();
-        initWorkFilter();
-        // init_map();
-        init_wow();
-        init_masonry();
-        init_appform();
+        setTimeout(() => {
+
+            // init_classic_menu();
+            init_lightbox();
+            init_parallax();
+            init_shortcodes();
+            init_tooltips();
+            // init_counters();
+            init_team();
+            initPageSliders();
+            initWorkFilter();
+            // init_map();
+            init_wow();
+            init_masonry();
+            init_appform();
+
+        }, 500)
     });
 
     $(window).resize(function(){

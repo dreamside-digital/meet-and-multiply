@@ -27,6 +27,15 @@ module.exports = {
         databaseURL: firebaseConfig.databaseURL,
         types: [
           {
+            type: "Originators",
+            path: "originators",
+            map: node => {
+              node.content = JSON.stringify(node.content);
+
+              return node
+            },
+          },
+          {
             type: "Pages",
             path: "pages",
             map: node => {
@@ -35,15 +44,6 @@ module.exports = {
               return node
             },
           },
-          {
-            type: "Originators",
-            path: "originators",
-            map: node => {
-              node.content = JSON.stringify(node.content);
-
-              return node
-            },
-          }
         ]
       }
     },

@@ -40,8 +40,8 @@ export function toggleEditing() {
   return { type: "TOGGLE_EDITING" };
 }
 
-export function toggleNewTrackModal() {
-  return { type: "TOGGLE_NEW_TRACK_MODAL" };
+export function toggleNewOriginatorModal() {
+  return { type: "TOGGLE_NEW_ORIGINATOR_MODAL" };
 }
 
 export function updatePage(pageId, contentId, content) {
@@ -184,14 +184,14 @@ export function submitProjectForm(formData, e) {
 // TRACKS ------------------------
 
 
-export function createTrack(trackData) {
+export function createOriginator(data) {
   return dispatch => {
     const db = firebase.database();
     db
       .ref("originators")
-      .push(trackData)
+      .push(data)
       .then(snap => {
-        dispatch(toggleNewTrackModal());
+        dispatch(toggleNewOriginatorModal());
         dispatch(
           showNotification(
             "Your page has been saved. Publish your changes to view and edit your new page.",
@@ -203,11 +203,11 @@ export function createTrack(trackData) {
 }
 
 
-export function saveTrackContent(trackId, contentId, content) {
+export function saveOriginatorContent(pageId, contentId, content) {
   return dispatch => {
     const db = firebase.database();
 
-    db.ref(`originators/${trackId}/content/${contentId}/`).set(content, error => {
+    db.ref(`originators/${pageId}/content/${contentId}/`).set(content, error => {
       if (error) {
         return dispatch(
           showNotification(
@@ -228,7 +228,7 @@ export function saveTrackContent(trackId, contentId, content) {
   };
 }
 
-export function saveTrackData(trackId, field, content) {
+export function saveOriginatorData(pageId, field, content) {
   return dispatch => {
     const db = firebase.database();
 
@@ -236,7 +236,7 @@ export function saveTrackData(trackId, field, content) {
       [field]: content
     };
 
-    db.ref(`originators/${trackId}`).set(data).then(res => {
+    db.ref(`originators/${pageId}`).set(data).then(res => {
       dispatch(updatePageData({ [field]: content }));
       dispatch(
         showNotification(

@@ -11,8 +11,8 @@ export const adminTools = (state={}, action) => {
       return { ...state, isEditingPage: !state.isEditingPage }
     case 'TOGGLE_REGISTRATION_MODAL':
       return { ...state, showRegistrationModal: !state.showRegistrationModal }
-    case 'TOGGLE_NEW_TRACK_MODAL':
-      return { ...state, showNewTrackModal: !state.showNewTrackModal }
+    case 'TOGGLE_NEW_ORIGINATOR_MODAL':
+      return { ...state, showNewOriginatorModal: !state.showNewOriginatorModal }
     default:
       return state
   }
@@ -102,9 +102,9 @@ export const projectForm = (state={}, action) => {
   }
 }
 
-export const tracks = (state={}, action) => {
+export const originators = (state={}, action) => {
   switch (action.type) {
-    case 'UPDATE_TRACK_DATA':
+    case 'UPDATE_ORIGINATOR_DATA':
       return {
         ...state,
         data: {
@@ -127,7 +127,7 @@ export const appReducers = (state = {}, action) => {
     navigation: navigation(state.navigation, action),
     page: page(state.page, action),
     projectForm: projectForm(state.projectForm, action),
-    tracks: tracks(state.tracks, action),
+    originators: originators(state.originators, action),
   }
 }
 

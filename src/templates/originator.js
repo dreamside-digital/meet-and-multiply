@@ -2,8 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 import { connect } from "react-redux";
 import {
-  saveTrackContent,
-  saveTrackData,
+  saveOriginatorContent,
+  saveOriginatorData,
   loadPageData
 } from "../redux/actions";
 
@@ -17,11 +17,11 @@ import BackgroundImage from "../components/editables/BackgroundImage";
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateTrackContent: (track, id, data) => {
-      dispatch(saveTrackContent(track, id, data));
+    onUpdateOriginatorContent: (track, id, data) => {
+      dispatch(saveOriginatorContent(track, id, data));
     },
-    onUpdateTrackData: (track, id, data) => {
-      dispatch(saveTrackData(track, id, data));
+    onUpdateOriginatorData: (track, id, data) => {
+      dispatch(saveOriginatorData(track, id, data));
     },
     onLoadPageData: data => {
       dispatch(loadPageData(data));
@@ -61,12 +61,12 @@ class OriginatorTemplate extends React.Component {
     const { id } = this.props.data.originators;
     console.log(`Saving ${fieldId}`);
     console.log(content);
-    this.props.onUpdateTrackContent(id, fieldId, content);
+    this.props.onUpdateOriginatorContent(id, fieldId, content);
   };
 
   onSaveTitle = content => {
     const { id } = this.props.data.originators;
-    this.props.onUpdateTrackData(id, "title", content.text);
+    this.props.onUpdateOriginatorData(id, "title", content.text);
   };
 
   render() {
@@ -75,15 +75,15 @@ class OriginatorTemplate extends React.Component {
 
     return (
       <Layout>
-        <main className="page" id="top">
+        <main className="page">
           <BackgroundImage content={content["header-bg"]} onSave={this.onSave("header-bg")} className="small-section bg-dark-alfa-30">
             <div className="relative container align-left">
               <div className="row">
                 <div className="col-md-8">
                   <h1 className="section-heading mb-10 mb-xs-0">
                     <PlainText
-                      content={content["header-title"]}
-                      onSave={this.onSave("header-title")}
+                      content={{ text: title }}
+                      onSave={this.onSaveTitle}
                     />
                   </h1>
                   <div className="hs-line-4 uppercase">

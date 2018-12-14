@@ -29,7 +29,7 @@ const theme = createMuiTheme({
     fontWeightMedium: 500,
     color: '#333',
     display1: {
-      fontFamily: `'Averia Serif Libre', cursive`,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
       fontSize: 60,
       color: '#DA900A',
       marginTop: "0.75em",
@@ -37,7 +37,7 @@ const theme = createMuiTheme({
       lineHeight: 1.2,
     },
     display2: {
-      fontFamily: `'Averia Serif Libre', cursive`,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
       fontSize: 48,
       color: '#DA900A',
       marginTop: "0.75em",
@@ -63,15 +63,15 @@ const theme = createMuiTheme({
       marginTop: "0.6em",
     },
     title: {
-      fontFamily: `'Averia Serif Libre', cursive`,
-      fontSize: 72,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
+      fontSize: 28,
       color: '#DA900A',
       fontWeight: 700,
       marginTop: 0,
       marginBottom: 0,
     },
     headline: {
-      fontFamily: `'Averia Serif Libre', cursive`,
+      fontFamily: `"Helvetica Neue",Helvetica,Arial,sans-serif`,
       letterSpacing: "0.05rem",
       fontSize: 36,
       color: '#AAC3DC',

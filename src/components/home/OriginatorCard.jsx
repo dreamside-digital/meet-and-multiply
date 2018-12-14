@@ -4,15 +4,20 @@ import PlainText from "../../components/editables/PlainText";
 
 import Button from "@material-ui/core/Button"
 
+// TODO Finish this!
 
-const LogoDisplay = ({ entity, index, onSave, onDelete }) => {
+
+const OriginatorCard = ({ originator }) => {
+  const originatorData = originator ? originator.node : {};
+  const content = originatorData.content ? JSON.parse(originatorData.content) : {};
+
   return(
     <div className="col-sm-6 col-md-3 col-lg-3 mb-md-30 wow fadeInUp" data-wow-delay="0.1s">
       <div className="team-item">
         <div className="team-item-image" data-url="originators/ekutir">
-          <img src="ekutir/ekutir-photo.jpg" alt="eKutir" />
+          <img src={content["opportunity-image"]} alt={originator["title"]} />
           <div className="team-item-detail">
-            <h4 className="team-item-h">eKutir</h4>
+            <h4 className="team-item-h">{originator["title"]}</h4>
             <p>
               <strong> KC Mishra</strong><br />Founder of eKutir</p><p><em>Using ICT to link smallholder farmers to markets and service providers</em>
             </p>
@@ -35,4 +40,4 @@ const LogoDisplay = ({ entity, index, onSave, onDelete }) => {
   )
 }
 
-export default LogoDisplay;
+export default OriginatorCard;

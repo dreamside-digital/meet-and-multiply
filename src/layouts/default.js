@@ -22,15 +22,16 @@ import "../assets/css/magnific-popup.css";
 import "../assets/css/rev-slider.css";
 import "../assets/css/simpletextrotator.css";
 import "../assets/css/style-responsive.css";
-import "../assets/css/style.css";
 import "../assets/css/vertical-rhythm.min.css";
+import "../assets/css/style.css";
 
 
 const styles = {
   container: {
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    paddingTop: '55px',
   },
   content: {
     flexGrow: "1"
@@ -52,7 +53,7 @@ const DefaultLayout = props => (
     <Navigation />
     <Notification />
     <AccountButton />
-    <div className="page-content" style={styles.content}>
+    <div className="page-content" style={styles.content} id="#top">
       {props.children}
     </div>
     <Footer />

@@ -128,7 +128,7 @@ class AccountButton extends React.Component {
                   closeMenu();
                 }}
               >
-                Add track
+                Add Originator
               </MenuItem>
             )}
 

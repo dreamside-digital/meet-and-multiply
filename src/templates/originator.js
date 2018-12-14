@@ -386,7 +386,7 @@ class OriginatorTemplate extends React.Component {
                     </h3>
 
                     <blockquote className="testimonial white">
-                      <Paragraph
+                      <PlainText
                         content={content["impact1-description"]}
                         onSave={this.onSave("impact1-description")}
                       />
@@ -418,7 +418,7 @@ class OriginatorTemplate extends React.Component {
                     </h3>
 
                     <blockquote className="testimonial white">
-                      <Paragraph
+                      <PlainText
                         content={content["impact2-description"]}
                         onSave={this.onSave("impact2-description")}
                       />
@@ -450,7 +450,7 @@ class OriginatorTemplate extends React.Component {
                     </h3>
 
                     <blockquote className="testimonial white">
-                      <Paragraph
+                      <PlainText
                         content={content["impact3-description"]}
                         onSave={this.onSave("impact3-description")}
                       />

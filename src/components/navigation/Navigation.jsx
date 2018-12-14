@@ -31,7 +31,7 @@ class Navigation extends React.Component {
           </div>
             <div className="inner-nav desktop-nav">
               <ul className="clearlist scroll-nav local-scroll">
-                <OriginatorsDropdown originators={pastOriginators} anchorText="Past originators ▼" />
+                <OriginatorsDropdown originators={pastOriginators} anchorText="Past originators" />
                 <li><Link to="/#call-to-action">Adopters</Link></li>
                 <li><Link to="/#partners">Partners</Link></li>
                 <li><Link to="/#contact-us">Contact us</Link></li>
@@ -75,6 +75,7 @@ class OriginatorsDropdown extends React.Component {
           style={{ display: 'flex', alignItems: 'center' }}>
           <Link to="#originators">
             { this.props.anchorText }
+            <ExpandMoreIcon />
           </Link>
         </li>
         <Menu

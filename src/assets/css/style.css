@@ -293,7 +293,7 @@ h3{
     font-size: 30px;
 }
 h4{
-    font-size: 26px;
+    font-size: 18px;
 }
 h5{
     font-size: 22px;
@@ -1300,11 +1300,13 @@ a.logo:hover{
 .inner-nav ul li a{
     color: #777;
     letter-spacing: 1px;
-    display: inline-block;
+    /*display: inline-block;*/
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 
     -webkit-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
     -moz-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);

@@ -25,10 +25,11 @@ export const replaceRouterComponent = ({ history }) => {
 };
 
 export const onRouteUpdate = (route) => {
-  const location = route.location
+  setTimeout(() => {
+    window.dispatchEvent(new Event('hashchange'))
+    const location = route.location
 
-  if (location && location.hash) {
-    setTimeout(() => {
+    if (location && location.hash) {
       const el = document.querySelector(location.hash)
       if (el) {
         const top = el.offsetTop - 40
@@ -38,6 +39,6 @@ export const onRouteUpdate = (route) => {
         })
         return true
       }
-    }, 0);
-  }
+    }
+  }, 0);
 };

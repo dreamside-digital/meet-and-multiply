@@ -531,7 +531,7 @@ class HomePage extends React.Component {
                             </div>
 
                             <div className="form-group">
-                              <label className="form-label" for="orgtype">Do you see your self as a potential Originator, Adopter or Partner?</label>
+                              <label className="form-label" htmlFor="orgtype">Do you see your self as a potential Originator, Adopter or Partner?</label>
                               <select name="subscriber[role]" id="role" className="input-lg form-control" placeholder="Which role interests you?" pattern=".{5,100}" required data-error="Please select an item from the list.">
                                   <option selected="selected" disabled="disabled" value="">Choose one</option>
                                   <option value="Originator">Originator: Your company is interested in expanding or replicating in a new region.</option>
@@ -553,9 +553,9 @@ class HomePage extends React.Component {
                                 <div className="help-block with-errors"></div>
                             </div>
 
-                            <div class="form-group">
-                              <label class="form-label" for="region">What is your region of interest?</label>
-                              <select name="subscriber[region]" id="region" class="input-lg form-control" placeholder="Region of interest" pattern=".{5,100}" >
+                            <div className="form-group">
+                              <label className="form-label" htmlFor="region">What is your region of interest?</label>
+                              <select name="subscriber[region]" id="region" className="input-lg form-control" placeholder="Region of interest" pattern=".{5,100}" >
                                   <option selected="selected" disabled="disabled" value="">Choose one</option>
                                   <option value="East Asia and Pacific">East Asia and Pacific</option>
                                   <option value="Europe and Central Asia">Europe and Central Asia</option>
@@ -565,7 +565,7 @@ class HomePage extends React.Component {
                                   <option value="South Asia">South Asia</option>
                                   <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
                               </select>
-                              <div class="help-block with-errors"></div>
+                              <div className="help-block with-errors"></div>
                             </div>
                           </div>
 

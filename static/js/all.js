@@ -6,6 +6,12 @@
      Scripts initialization
      --------------------------------------------- */
 
+    $(window).bind('hashchange', function() {
+        $(window).trigger("scroll");
+        $(window).trigger("resize");
+        init_shortcodes();
+    });
+
     $(window).load(function(){
 
         // Page loader
@@ -25,6 +31,8 @@
             });
         }
     });
+
+
 
     $(document).ready(function(){
 

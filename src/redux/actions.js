@@ -19,7 +19,7 @@ export function toggleRegistrationModal() {
 
 // NOTIFICATIONS ------------------------
 
-export function showNotification(message, color="success") {
+export function showNotification(message, color = "success") {
   return { type: "SHOW_NOTIFICATION", message, color };
 }
 
@@ -30,7 +30,7 @@ export function closeNotification() {
 export function showNotificationByName(name) {
   return dispatch => {
     const message = NOTIFICATION_MESSAGES[name];
-    dispatch( (message, "success"));
+    dispatch((message, "success"));
   };
 }
 
@@ -183,7 +183,6 @@ export function submitProjectForm(formData, e) {
 
 // TRACKS ------------------------
 
-
 export function createOriginator(data) {
   return dispatch => {
     const db = firebase.database();
@@ -202,29 +201,30 @@ export function createOriginator(data) {
   };
 }
 
-
 export function saveOriginatorContent(pageId, contentId, content) {
   return dispatch => {
     const db = firebase.database();
 
-    db.ref(`originators/${pageId}/content/${contentId}/`).set(content, error => {
-      if (error) {
-        return dispatch(
+    db
+      .ref(`originators/${pageId}/content/${contentId}/`)
+      .set(content, error => {
+        if (error) {
+          return dispatch(
+            showNotification(
+              `There was an error saving your changes: ${error}`,
+              "success"
+            )
+          );
+        }
+
+        dispatch(updatePageContent(contentId, content));
+        dispatch(
           showNotification(
-            `There was an error saving your changes: ${error}`,
+            "Your changes have been saved. Publish your changes to make them public.",
             "success"
           )
         );
-      }
-
-      dispatch(updatePageContent(contentId, content));
-      dispatch(
-        showNotification(
-          "Your changes have been saved. Publish your changes to make them public.",
-          "success"
-        )
-      );
-    });
+      });
   };
 }
 
@@ -236,22 +236,93 @@ export function saveOriginatorData(pageId, field, content) {
       [field]: content
     };
 
-    db.ref(`originators/${pageId}`).set(data).then(res => {
-      dispatch(updatePageData({ [field]: content }));
-      dispatch(
-        showNotification(
-          "Your changes have been saved. Publish your changes to make them public.",
-          "success"
-        )
-      );
-    }).catch(err => {
-      dispatch(
-        showNotification(
-          `There was an error saving your changes: ${err}`,
+    db
+      .ref(`originators/${pageId}`)
+      .set(data)
+      .then(res => {
+        dispatch(updatePageData({ [field]: content }));
+        dispatch(
+          showNotification(
+            "Your changes have been saved. Publish your changes to make them public.",
+            "success"
+          )
+        );
+      })
+      .catch(err => {
+        dispatch(
+          showNotification(
+            `There was an error saving your changes: ${err}`,
             "danger"
-        )
-      );
-    })
+          )
+        );
+      });
   };
 }
 
+// SUBSCRIBERS ------------------------
+
+export function getSubscribers() {
+  return dispatch => {
+    const db = firebase.database();
+
+    db
+      .ref(`subscribers`)
+      .once("value")
+      .then(snapshot => {
+        const subscribers = snapshot.val();
+        dispatch(updateSubscribers(subscribers));
+      });
+  };
+}
+
+export function updateSubscribers(subscribers) {
+  return { type: "UPDATE_SUBSCRIBERS", subscribers };
+}
+
+export function updateSubscriberForm(data) {
+  return { type: "UPDATE_SUBSCRIBER_FORM", data };
+}
+
+export function createSubscriber(data) {
+  return dispatch => {
+    const db = firebase.database();
+    db
+      .ref("subscribers")
+      .push(data)
+      .then(snap => {
+        dispatch(
+          showNotification(
+            "Thank you for subscribing. We will notify you when applications for Meet & Multiply are open.",
+            "success"
+          )
+        );
+      })
+      .catch(err => {
+        dispatch(
+          showNotification(
+            "There was an error saving your submission. Please try again.",
+            "success"
+          )
+        );
+      });
+  };
+}
+
+
+// SUBSCRIBERS ------------------------
+
+export function getApplicants() {
+  return dispatch => {
+    // TODO
+  };
+}
+
+export function updateApplicants(applicants) {
+  return { type: "UPDATE_APPLICANTS", applicants };
+}
+
+export function updateApplicant(data) {
+  return dispatch => {
+    // TODO
+  };
+}

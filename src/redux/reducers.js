@@ -120,6 +120,48 @@ export const originators = (state={}, action) => {
   }
 }
 
+const subscriberForm = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  orgname: "",
+  sector: "",
+  role: "",
+  region: "",
+}
+
+export const subscribers = (state={ form: subscriberForm, subscribers: {} }, action) => {
+  switch (action.type) {
+    case 'UPDATE_SUBSCRIBERS':
+      return {
+        ...state,
+        subscribers: action.subscribers
+      }
+    case 'UPDATE_SUBSCRIBER_FORM':
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          ...action.data
+        }
+      }
+    default:
+      return state
+  }
+}
+
+export const applicants = (state={ applicants: {} }, action) => {
+  switch (action.type) {
+    case 'UPDATE_APPLICANTS':
+      return {
+        ...state,
+        applicants: action.applicants
+      }
+    default:
+      return state
+  }
+}
+
 export const appReducers = (state = {}, action) => {
   return {
     notifications: notifications(state.notifications, action),
@@ -127,6 +169,8 @@ export const appReducers = (state = {}, action) => {
     navigation: navigation(state.navigation, action),
     page: page(state.page, action),
     projectForm: projectForm(state.projectForm, action),
+    subscribers: subscribers(state.subscribers, action),
+    applicants: applicants(state.applicants, action),
     originators: originators(state.originators, action),
   }
 }

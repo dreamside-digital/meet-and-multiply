@@ -44,6 +44,8 @@ class CreateOriginatorModal extends React.Component {
         tech: "",
         order: 0,
         year: 2019,
+        representative_name: "",
+        representative_position: "",
       }
     };
     this.updatePage = (field, value) => {
@@ -71,6 +73,9 @@ class CreateOriginatorModal extends React.Component {
     const originatorData = {
       title: this.state.page.title,
       slug: `/originators/${slugifiedTitle}`,
+      year: this.state.page.year,
+      representative_name: this.state.page["representative_name"],
+      representative_position: this.state.page["representative_position"],
       year: this.state.page.year,
       page_type: "originator",
       template: "originator.js",
@@ -100,6 +105,26 @@ class CreateOriginatorModal extends React.Component {
               label={"Originator name"}
               value={this.state.page.title}
               onChange={e => this.updatePage("title", e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl fullWidth margin="normal">
+            <TextField
+              className="form-control"
+              type="text"
+              label={"Who will be representing the originator?"}
+              value={this.state.page["representative_name"]}
+              onChange={e => this.updatePage("representative_name", e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl fullWidth margin="normal">
+            <TextField
+              className="form-control"
+              type="text"
+              label={"What is the representative's position at the company?"}
+              value={this.state.page["representative_position"]}
+              onChange={e => this.updatePage("representative_position", e.target.value)}
             />
           </FormControl>
 

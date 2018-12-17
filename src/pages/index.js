@@ -19,7 +19,7 @@ import CustomButton from "../components/editables/CustomButton";
 import BackgroundImage from "../components/editables/BackgroundImage";
 
 import Partner from "../components/home/Partner";
-// import OriginatorCard from "../components/home/OriginatorCard";
+import OriginatorCard from "../components/home/OriginatorCard";
 
 const PAGE_ID = "home";
 
@@ -112,6 +112,7 @@ class HomePage extends React.Component {
   render() {
     const content = this.props.pageData ? this.props.pageData.content : {};
     // const originators = this.props.data ? this.props.data.allOriginators.edges : [];
+    const originators = []
     const partners = content["partners"] || [];
     const subscriber = this.props.subscriberForm;
 
@@ -285,6 +286,16 @@ class HomePage extends React.Component {
                     />
                   </div>
                 </div>
+              </div>
+
+              <div className="row multi-columns-row">
+                {
+                  originators.map((originator, i) => {
+                    return(
+                      <OriginatorCard key={`originator-${i}`} originator={originator} />
+                    )
+                  })
+                }
               </div>
             </div>
           </section>
@@ -903,6 +914,19 @@ export const query = graphql`
       title
       slug
       content
+    }
+    allOriginators {
+      edges {
+        node {
+          id
+          title
+          representative_name
+          representative_position
+          slug
+          year
+          content
+        }
+      }
     }
   }
 `;

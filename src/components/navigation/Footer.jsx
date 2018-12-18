@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql, Link } from "gatsby";
 
 const Footer = props => {
   return (
@@ -18,6 +18,10 @@ const Footer = props => {
 
                 <div className="footer-made">
                     <a href="http://www.endeva.org" target="_blank" rel="noopener noreferrer">www.endeva.org</a>
+                </div>
+
+                <div className="footer-contact">
+                    <Link to="#contact-us">Contact us</Link>
                 </div>
 
             </div>

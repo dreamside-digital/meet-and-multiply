@@ -31,10 +31,9 @@ class Navigation extends React.Component {
           </div>
             <div className="inner-nav desktop-nav">
               <ul className="clearlist scroll-nav local-scroll">
-                <OriginatorsDropdown originators={pastOriginators} anchorText="Past originators" />
+                <li><Link to="/#originators">Originators</Link></li>
                 <li><Link to="/#call-to-action">Adopters</Link></li>
                 <li><Link to="/#partners">Partners</Link></li>
-                <li><Link to="/#contact-us">Contact us</Link></li>
                 <li><Link to="/#contact">Event Info</Link></li>
                 <li><Link to="/faqs">FAQ</Link></li>
                 <li>

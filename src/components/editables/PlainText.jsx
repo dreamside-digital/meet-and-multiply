@@ -30,7 +30,7 @@ PlainText.propTypes = {
 }
 
 PlainText.defaultProps = {
-  content: { text: 'Placeholder' },
+  content: { text: '' },
   onSave: newContent => console.log('Implement a function to save changes!', newContent),
 }
 

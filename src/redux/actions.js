@@ -1,6 +1,7 @@
 import axios from "axios";
 import firebase from "../firebase/init";
 import slugify from "slugify";
+import http from "http";
 import { NOTIFICATION_MESSAGES } from "../utils/constants";
 
 // AUTHENTICATION ------------------------
@@ -309,11 +310,35 @@ export function createSubscriber(data) {
 }
 
 
-// SUBSCRIBERS ------------------------
+// APPLICANTS ------------------------
 
 export function getApplicants() {
   return dispatch => {
-    // TODO
+    const options = {
+      hostname: 'localhost',
+      port: 3000,
+      path: '/applicants',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${process.env.GATSBY_MNM_API_TOKEN}`,
+      }
+    }
+
+    const req = http.request(options, (res) => {
+      res.setEncoding('utf8');
+      res.on('data', (data) => {
+        const applicants = JSON.parse(data)
+        console.log(applicants)
+        dispatch(updateApplicants(applicants));
+      })
+    })
+
+    req.on('error', (error) => {
+      console.error(error)
+    })
+
+    req.end()
   };
 }
 
@@ -324,5 +349,49 @@ export function updateApplicants(applicants) {
 export function updateApplicant(data) {
   return dispatch => {
     // TODO
+  };
+}
+
+export function createApplicant(data) {
+  return dispatch => {
+    const jsonData = JSON.stringify(data)
+
+    const options = {
+      hostname: 'localhost',
+      port: 3000,
+      path: '/applicants',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': data.length,
+        'Authorization': `Token token=${process.env.GATSBY_MNM_API_TOKEN}`,
+      }
+    }
+
+    const req = http.request(options, (res) => {
+      if (res.statusCode === 201) {
+        dispatch(
+          showNotification(
+            "Thank you for your application. We will review it within the next week. You should receive an email from us shortly.",
+            "success"
+          )
+        );
+      } else {
+        console.log(res.statusMessage)
+        dispatch(
+          showNotification(
+            "We were unable to save your application. Please make sure the form is filled in correctly and try again.",
+            "error"
+          )
+        );
+      }
+    })
+
+    req.on('error', (error) => {
+      console.error(error)
+    })
+
+    req.write(jsonData)
+    req.end()
   };
 }

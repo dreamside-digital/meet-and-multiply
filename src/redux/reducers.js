@@ -123,11 +123,23 @@ export const originators = (state={}, action) => {
 const subscriberForm = {
   firstname: "",
   lastname: "",
+  company: "",
+  position: "",
   email: "",
-  orgname: "",
-  sector: "",
-  role: "",
-  region: "",
+  referrer: "",
+  nationality: "",
+  location: "",
+  role: "Adopter",
+  bmodel: "",
+  orgtype: "",
+  interest: "",
+  profile: "",
+  financing: "",
+  additional: "",
+  partner_bmodel: [],
+  support_region: [],
+  partner_sector: [],
+  support_type: [],
 }
 
 export const subscribers = (state={ form: subscriberForm, subscribers: {} }, action) => {
@@ -150,12 +162,42 @@ export const subscribers = (state={ form: subscriberForm, subscribers: {} }, act
   }
 }
 
-export const applicants = (state={ applicants: {} }, action) => {
+const applicantForm = {
+  firstname: "",
+  lastname: "",
+  company: "",
+  position: "",
+  email: "",
+  referrer: "",
+  nationality: "",
+  location: "",
+  role: "Adopter",
+  bmodel: "",
+  orgtype: "",
+  interest: "",
+  profile: "",
+  financing: "",
+  additional: "",
+  partner_bmodel: [],
+  support_region: [],
+  partner_sector: [],
+  support_type: [],
+}
+
+export const applicants = (state={ form: applicantForm, applicants: {} }, action) => {
   switch (action.type) {
     case 'UPDATE_APPLICANTS':
       return {
         ...state,
         applicants: action.applicants
+      }
+    case 'UPDATE_APPLICANT_FORM':
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          ...action.data
+        }
       }
     default:
       return state

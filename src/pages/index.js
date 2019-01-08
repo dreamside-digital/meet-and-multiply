@@ -5,7 +5,8 @@ import {
   updatePage,
   loadPageData,
   updateSubscriberForm,
-  createSubscriber
+  createSubscriber,
+  createApplicant,
 } from "../redux/actions";
 
 import Button from "@material-ui/core/Button";
@@ -20,6 +21,8 @@ import BackgroundImage from "../components/editables/BackgroundImage";
 
 import Partner from "../components/home/Partner";
 import OriginatorCard from "../components/home/OriginatorCard";
+
+import { PARTNER_REGION_OPTIONS } from "../utils/constants";
 
 const PAGE_ID = "home";
 
@@ -36,7 +39,10 @@ const mapDispatchToProps = dispatch => {
     },
     updateSubscriberForm: data => {
       dispatch(updateSubscriberForm(data));
-    }
+    },
+    createApplicant: data => {
+      dispatch(createApplicant(data));
+    },
   };
 };
 
@@ -101,13 +107,23 @@ class HomePage extends React.Component {
   submitForm = event => {
     event.preventDefault();
     const formData = this.props.subscriberForm;
-    debugger;
-    this.props.createSubscriber(formData);
+    console.log(formData)
+    this.props.createApplicant(formData);
   };
 
   updateForm = field => event => {
     this.props.updateSubscriberForm({ [field]: event.target.value });
   };
+
+  updateFormMultiSelect = field => event => {
+    const arr = []
+    for (var i = 0, l = event.target.options.length; i < l; i++) {
+      if (event.target.options[i].selected) {
+        arr.push(event.target.options[i].value);
+      }
+    }
+    this.props.updateSubscriberForm({ [field]: arr })
+  }
 
   render() {
     const content = this.props.pageData ? this.props.pageData.content : {};
@@ -754,6 +770,34 @@ class HomePage extends React.Component {
 
                         <div className="form-group">
                           <input
+                            type="text"
+                            name="subscriber[company]"
+                            id="company"
+                            className="input-lg form-control"
+                            placeholder="Organization name"
+                            pattern=".{5,100}"
+                            value={subscriber["company"]}
+                            onChange={this.updateForm("company")}
+                          />
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <input
+                            type="text"
+                            name="subscriber[position]"
+                            id="position"
+                            className="input-lg form-control"
+                            placeholder="Job title"
+                            pattern=".{5,100}"
+                            value={subscriber["position"]}
+                            onChange={this.updateForm("position")}
+                          />
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <input
                             type="email"
                             name="subscriber[email]"
                             id="email"
@@ -769,9 +813,38 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
-                          <label className="form-label" htmlFor="orgtype">
-                            Do you see your self as a potential Originator,
-                            Adopter or Partner?
+                          <input
+                            type="text"
+                            name="subscriber[referrer]"
+                            id="referrer"
+                            className="input-lg form-control"
+                            placeholder="How did you find out about this event?"
+                            pattern=".{5,100}"
+                            required
+                            data-error="This field is required."
+                            value={subscriber["referrer"]}
+                            onChange={this.updateForm("referrer")}
+                          />
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <input
+                            type="text"
+                            name="subscriber[location]"
+                            id="location"
+                            className="input-lg form-control"
+                            placeholder="Where are you currently based?"
+                            pattern=".{5,100}"
+                            value={subscriber["location"]}
+                            onChange={this.updateForm("location")}
+                          />
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label" htmlFor="role">
+                            Are you applying as an Adopter or an Ecosystem Partner?
                           </label>
                           <select
                             name="subscriber[role]"
@@ -784,92 +857,296 @@ class HomePage extends React.Component {
                             value={subscriber["role"]}
                             onChange={this.updateForm("role")}
                           >
-                            <option disabled="disabled" value="">
-                              Choose one
-                            </option>
-                            <option value="Originator">
-                              Originator: Your company is interested in
-                              expanding or replicating in a new region.
-                            </option>
                             <option value="Adopter">
                               Adopter: You are interested in adopting or
-                              replicating a social business model.{" "}
+                              replicating a social business model.
                             </option>
                             <option value="Partner">
-                              Partner: You wish to provide support for the
+                              Ecosystem Partner: You wish to provide support for the
                               replication of social business models.
                             </option>
                           </select>
                           <div className="help-block with-errors" />
                         </div>
+
                       </div>
 
-                      <div className="cf-right-col">
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name="subscriber[orgname]"
-                            id="orgname"
-                            className="input-lg form-control"
-                            placeholder="Organization name"
-                            pattern=".{5,100}"
-                            value={subscriber["orgname"]}
-                            onChange={this.updateForm("orgname")}
-                          />
-                          <div className="help-block with-errors" />
-                        </div>
+                      { this.props.subscriberForm.role ==="Adopter" &&
 
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            name="subscriber[sector]"
-                            id="sector"
-                            className="input-lg form-control"
-                            placeholder="Sector of interest"
-                            pattern=".{5,100}"
-                            value={subscriber["sector"]}
-                            onChange={this.updateForm("sector")}
-                          />
-                          <div className="help-block with-errors" />
-                        </div>
+                        <div className="cf-right-col">
 
-                        <div className="form-group">
-                          <label className="form-label" htmlFor="region">
-                            What is your region of interest?
-                          </label>
-                          <select
-                            name="subscriber[region]"
-                            id="region"
-                            className="input-lg form-control"
-                            placeholder="Region of interest"
-                            pattern=".{5,100}"
-                            value={subscriber["region"]}
-                            onChange={this.updateForm("region")}
-                          >
-                            <option disabled="disabled" value="">
-                              Choose one
-                            </option>
-                            <option value="East Asia and Pacific">
-                              East Asia and Pacific
-                            </option>
-                            <option value="Europe and Central Asia">
-                              Europe and Central Asia
-                            </option>
-                            <option value="Latin America & the Caribbean">
-                              Latin America & the Caribbean
-                            </option>
-                            <option value="Middle East and North Africa">
-                              Middle East and North Africa
-                            </option>
-                            <option value="North America">North America</option>
-                            <option value="South Asia">South Asia</option>
-                            <option value="Sub-Saharan Africa">
-                              Sub-Saharan Africa
-                            </option>
-                          </select>
-                          <div className="help-block with-errors" />
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              name="subscriber[nationality]"
+                              id="nationality"
+                              className="input-lg form-control"
+                              placeholder="What is your nationality?"
+                              pattern=".{5,100}"
+                              value={subscriber["nationality"]}
+                              onChange={this.updateForm("nationality")}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <label className="form-label" htmlFor="bmodel">
+                              Which model are you interested in?
+                            </label>
+                            <select
+                              name="subscriber[bmodel]"
+                              id="bmodel"
+                              className="input-lg form-control"
+                              pattern=".{5,100}"
+                              required
+                              data-error="Please select an item from the list."
+                              value={subscriber["bmodel"]}
+                              onChange={this.updateForm("bmodel")}
+                            >
+                              <option disabled="disabled" value="">
+                                Choose one
+                              </option>
+                              <option value="Originator 1">
+                                Originator 1
+                              </option>
+                              <option value="Originator 2">
+                                Originator 2
+                              </option>
+                            </select>
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <label className="form-label" htmlFor="orgtype">
+                              How are you applying?
+                            </label>
+                            <select
+                              name="subscriber[orgtype]"
+                              id="orgtype"
+                              className="input-lg form-control"
+                              pattern=".{5,100}"
+                              required
+                              data-error="Please select an item from the list."
+                              value={subscriber["orgtype"]}
+                              onChange={this.updateForm("orgtype")}
+                            >
+                              <option disabled="disabled" value="">
+                                Choose one
+                              </option>
+                              <option value="Company">
+                                As a company
+                              </option>
+                              <option value="Individual">
+                                As an individual
+                              </option>
+                            </select>
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <textarea
+                              type="text"
+                              name="subscriber[interest]"
+                              id="interest"
+                              className="input-lg form-control"
+                              placeholder="Why are you interested in adopting or replicating this business model?"
+                              pattern=".{5,100}"
+                              value={subscriber["interest"]}
+                              onChange={this.updateForm("interest")}
+                              rows={6}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <textarea
+                              type="text"
+                              name="subscriber[profile]"
+                              id="profile"
+                              className="input-lg form-control"
+                              placeholder="What makes you a good fit for replicating the model? How well do you respond to the adopter criteria shown in the adopter profile?"
+                              pattern=".{5,100}"
+                              value={subscriber["profile"]}
+                              onChange={this.updateForm("profile")}
+                              rows={6}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <textarea
+                              type="text"
+                              name="subscriber[financing]"
+                              id="financing"
+                              className="input-lg form-control"
+                              placeholder="How would you potentially finance/co-finance the replication of the model?"
+                              pattern=".{5,100}"
+                              value={subscriber["financing"]}
+                              onChange={this.updateForm("financing")}
+                              rows={6}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              name="subscriber[additional]"
+                              id="additional"
+                              className="input-lg form-control"
+                              placeholder="Any additional info?"
+                              pattern=".{5,100}"
+                              value={subscriber["additional"]}
+                              onChange={this.updateForm("additional")}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
                         </div>
-                      </div>
+                      }
+
+                      { this.props.subscriberForm.role ==="Partner" &&
+
+                        <div className="cf-right-col">
+
+                          <div className="form-group">
+                            <label className="form-label" htmlFor="partner_bmodel">
+                              Which model(s) are you interested in?
+                            </label>
+                            <select
+                              name="subscriber[partner_bmodel]"
+                              id="partner_bmodel"
+                              className="form-control"
+                              pattern=".{5,100}"
+                              required
+                              multiple
+                              data-error="Please select an item from the list."
+                              value={subscriber["partner_bmodel"]}
+                              onChange={this.updateFormMultiSelect("partner_bmodel")}
+                            >
+                              <option value="Originator 1">
+                                Originator 1
+                              </option>
+                              <option value="Originator 2">
+                                Originator 2
+                              </option>
+                            </select>
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <label className="form-label" htmlFor="support_region">
+                              Which countries or regions does your organization support?
+                            </label>
+                            <select
+                              name="subscriber[support_region]"
+                              id="support_region"
+                              className="form-control"
+                              pattern=".{5,100}"
+                              required
+                              multiple
+                              data-error="Please select an item from the list."
+                              value={subscriber["support_region"]}
+                              onChange={this.updateFormMultiSelect("support_region")}
+                            >
+                              {
+                                PARTNER_REGION_OPTIONS.map(region => (
+                                  <option value={region} key={region}>
+                                    {region}
+                                  </option>
+                                ))
+                              }
+                            </select>
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <label className="form-label" htmlFor="partner_sector">
+                              In which sectors do you work?
+                            </label>
+                            <select
+                              name="subscriber[partner_sector]"
+                              id="partner_sector"
+                              className="form-control"
+                              pattern=".{5,100}"
+                              required
+                              multiple
+                              data-error="Please select an item from the list."
+                              value={subscriber["partner_sector"]}
+                              onChange={this.updateFormMultiSelect("partner_sector")}
+                            >
+                              <option value="Agriculture">
+                                Agriculture
+                              </option>
+                              <option value="Health">
+                                Health
+                              </option>
+                              <option value="Energy">
+                                Energy
+                              </option>
+                              <option value="Waste & Sanitation">
+                                Waste & Sanitation
+                              </option>
+                            </select>
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <label className="form-label" htmlFor="support_type">
+                              What kind of support can you offer originators?
+                            </label>
+                            <select
+                              name="subscriber[support_type]"
+                              id="support_type"
+                              className="form-control"
+                              pattern=".{5,100}"
+                              required
+                              multiple
+                              data-error="Please select an item from the list."
+                              value={subscriber["support_type"]}
+                              onChange={this.updateFormMultiSelect("support_type")}
+                            >
+                              <option value="Company">
+                                Financial support
+                              </option>
+                              <option value="Individual">
+                                Non-financial support
+                              </option>
+                            </select>
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <textarea
+                              type="text"
+                              name="subscriber[additonal_support]"
+                              id="additonal_support"
+                              className="input-lg form-control"
+                              placeholder="Please provide more details on how you can support originators."
+                              pattern=".{5,100}"
+                              value={subscriber["additonal_support"]}
+                              onChange={this.updateForm("additonal_support")}
+                              rows={6}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              name="subscriber[additional]"
+                              id="additional"
+                              className="input-lg form-control"
+                              placeholder="Any additional info?"
+                              pattern=".{5,100}"
+                              value={subscriber["additional"]}
+                              onChange={this.updateForm("additional")}
+                            />
+                            <div className="help-block with-errors" />
+                          </div>
+
+                        </div>
+                      }
 
                       <div className="clearfix">
                         <div className="cf-left-col">

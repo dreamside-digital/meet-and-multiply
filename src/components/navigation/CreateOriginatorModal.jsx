@@ -76,7 +76,6 @@ class CreateOriginatorModal extends React.Component {
       year: this.state.page.year,
       representative_name: this.state.page["representative_name"],
       representative_position: this.state.page["representative_position"],
-      year: this.state.page.year,
       page_type: "originator",
       template: "originator.js",
       navigation: {

@@ -10,11 +10,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 
 import Layout from "../layouts/default.js";
 import ProtectedPage from "../layouts/protected-page.js";
 
+const styles = {
+  paper: {
+    overflowX: 'auto',
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -41,7 +45,7 @@ const ApplicantsPage = props => {
             <div className="container relative">
               <div className="row section-text">
                 <div className="col-sm-12">
-                  <Paper>
+                  <Paper style={styles.paper}>
                     <Table>
                       <TableHead>
                         <TableRow>
@@ -50,8 +54,8 @@ const ApplicantsPage = props => {
                           <TableCell>Email</TableCell>
                           <TableCell>Organization</TableCell>
                           <TableCell>Job title</TableCell>
-                          <TableCell>Location</TableCell>
                           <TableCell>Role</TableCell>
+                          <TableCell>Status</TableCell>
                           <TableCell>Review</TableCell>
                         </TableRow>
                       </TableHead>
@@ -66,8 +70,8 @@ const ApplicantsPage = props => {
                               <TableCell>{applicant.email}</TableCell>
                               <TableCell>{applicant.company}</TableCell>
                               <TableCell>{applicant.position}</TableCell>
-                              <TableCell>{applicant.location}</TableCell>
                               <TableCell>{applicant.role}</TableCell>
+                              <TableCell>{applicant.status}</TableCell>
                               <TableCell>
                                 <Link to={`/review?applicant=${applicant.id}`}><span className="btn btn-mod btn-color btn-circle">Review</span></Link>
                               </TableCell>

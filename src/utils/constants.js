@@ -68,6 +68,7 @@ export const PARTNER_REGION_OPTIONS = [
 ]
 
 export const FORM_QUESTIONS = [
+  { key: "status", label: "Status" },
   { key: "firstname", label: "First name" },
   { key: "lastname", label: "Last name" },
   { key: "email", label: "Email" },

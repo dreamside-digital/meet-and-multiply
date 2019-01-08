@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Image from "../../components/editables/Image";
-import PlainText from "../../components/editables/PlainText";
 
-import Button from "@material-ui/core/Button"
 
 // TODO Finish this!
 

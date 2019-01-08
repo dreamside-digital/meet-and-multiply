@@ -1,4 +1,5 @@
 import axios from "axios";
+import { push } from "gatsby"
 import firebase from "../firebase/init";
 import slugify from "slugify";
 import http from "http";
@@ -329,7 +330,6 @@ export function getApplicants() {
       res.setEncoding('utf8');
       res.on('data', (data) => {
         const applicants = JSON.parse(data)
-        console.log(applicants)
         dispatch(updateApplicants(applicants));
       })
     })
@@ -379,6 +379,45 @@ export function updateApplicants(applicants) {
   return { type: "UPDATE_APPLICANTS", applicants };
 }
 
+export function updateApplicantStatus(id, status) {
+  return dispatch => {
+    const jsonData = JSON.stringify({ status })
+
+    const options = {
+      hostname: 'localhost',
+      port: 3000,
+      path: `/applicants/${id}/update_status`,
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': jsonData.length,
+        'Authorization': `Token token=${process.env.GATSBY_MNM_API_TOKEN}`,
+      }
+    }
+
+    const req = http.request(options, (res) => {
+      res.setEncoding('utf8');
+      res.on('data', (data) => {
+        const body = JSON.parse(data)
+        dispatch(updateApplicant(body.applicant));
+        dispatch(
+          showNotification(
+            body.message,
+            "success"
+          )
+        );
+      })
+    })
+
+    req.on('error', (error) => {
+      console.error(error)
+    })
+
+    req.write(jsonData)
+    req.end()
+  }
+}
+
 export function createApplicant(data) {
   return dispatch => {
     const cleanedData = {
@@ -411,7 +450,7 @@ export function createApplicant(data) {
           )
         );
       } else {
-        console.log(res.statusMessage)
+        console.error(res.statusMessage)
         dispatch(
           showNotification(
             "We were unable to save your application. Please make sure the form is filled in correctly and try again.",
@@ -426,6 +465,39 @@ export function createApplicant(data) {
     })
 
     req.write(jsonData)
+    req.end()
+  };
+}
+
+export function deleteApplicant(id) {
+  return dispatch => {
+    const options = {
+      hostname: 'localhost',
+      port: 3000,
+      path: `/applicants/${id}`,
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${process.env.GATSBY_MNM_API_TOKEN}`,
+      }
+    }
+
+    const req = http.request(options, (res) => {
+      if (res.statusCode === 204) {
+        push('/applicants')
+        return dispatch(
+          showNotification(
+            "The application has been deleted.",
+            "success"
+          )
+        );
+      }
+    })
+
+    req.on('error', (error) => {
+      console.error(error)
+    })
+
     req.end()
   };
 }

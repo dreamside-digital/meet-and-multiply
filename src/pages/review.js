@@ -1,14 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getApplicant } from "../redux/actions";
-import { map } from "lodash";
-import { Link } from "gatsby";
+import { getApplicant, updateApplicantStatus, deleteApplicant } from "../redux/actions";
 import qs from "query-string";
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -24,6 +21,12 @@ const mapDispatchToProps = dispatch => {
     getApplicant: (id) => {
       dispatch(getApplicant(id));
     },
+    deleteApplicant: (id) => {
+      dispatch(deleteApplicant(id));
+    },
+    updateApplicantStatus: (id, status) => {
+      dispatch(updateApplicantStatus(id, status));
+    }
   };
 };
 
@@ -36,13 +39,20 @@ const mapStateToProps = state => {
 
 const ReviewPage = props => {
   const applicant = props.applicant;
-  console.log(applicant.role)
+
+  const confirmDelete = () => {
+    if (window.confirm("Are you sure you want to delete this application?")) {
+      props.deleteApplicant(applicant.id);
+    }
+  }
+
   return (
     <Layout>
       <ProtectedPage>
         <main className="page">
           <section className="page-section">
             <div className="container relative">
+              <h1>{`${applicant.firstname} ${applicant.lastname}`}</h1>
               <div className="row section-text">
                 <div className="col-sm-12">
                   <Paper>
@@ -57,7 +67,8 @@ const ReviewPage = props => {
                                   <TableCell>{applicant[question.key]}</TableCell>
                                 </TableRow>
                               )
-                            }
+                            };
+                            return null;
                           })
                         }
                       </TableBody>
@@ -67,10 +78,11 @@ const ReviewPage = props => {
               </div>
               <div className="row section-text">
                 <div className="col-sm-12 mt-20">
-                  <Button>Approve</Button>
-                  <Button>Reject</Button>
-                  <Button>Request more information</Button>
-                  <Button>Send reminder</Button>
+                  <Button onClick={() => props.updateApplicantStatus(applicant.id, "Accepted")}>Accept</Button>
+                  <Button onClick={() => props.updateApplicantStatus(applicant.id, "Rejected")}>Reject</Button>
+                  <Button onClick={() => props.updateApplicantStatus(applicant.id, "More info requested")}>Request more information</Button>
+                  <Button onClick={() => props.updateApplicantStatus(applicant.id, "Reminder sent")}>Send reminder</Button>
+                  <Button onClick={confirmDelete}>Delete application</Button>
                 </div>
               </div>
             </div>
@@ -85,7 +97,6 @@ class PageContainer extends React.Component {
   componentDidMount() {
     const parsedParams = qs.parse(this.props.location.search)
     const id = parsedParams.applicant
-    console.log(id)
     this.props.getApplicant(id);
   }
 

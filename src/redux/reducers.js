@@ -184,12 +184,17 @@ const applicantForm = {
   support_type: [],
 }
 
-export const applicants = (state={ form: applicantForm, applicants: {} }, action) => {
+export const applicants = (state={ form: applicantForm, applicants: {}, applicant: {} }, action) => {
   switch (action.type) {
     case 'UPDATE_APPLICANTS':
       return {
         ...state,
         applicants: action.applicants
+      }
+    case 'UPDATE_APPLICANT':
+      return {
+        ...state,
+        applicant: action.applicant
       }
     case 'UPDATE_APPLICANT_FORM':
       return {

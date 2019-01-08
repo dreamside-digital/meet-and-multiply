@@ -66,3 +66,27 @@ export const PARTNER_REGION_OPTIONS = [
   "Zambia",
   "Zimbabwe",
 ]
+
+export const FORM_QUESTIONS = [
+  { key: "firstname", label: "First name" },
+  { key: "lastname", label: "Last name" },
+  { key: "email", label: "Email" },
+  { key: "company", label: "Organization" },
+  { key: "position", label: "Job title" },
+  { key: "referrer", label: "How did you find out about this event?" },
+  { key: "location", label: "Where are you currently based?" },
+  { key: "role", label: "Are you applying as an Adopter or an Ecosystem Partner?" },
+  { key: "nationality", label: "What is your nationality?", role: "Adopter" },
+  { key: "bmodel", label: "Which model are you interested in?", role: "Adopter" },
+  { key: "orgtype", label: "How are you applying?", role: "Adopter" },
+  { key: "interest", label: "Why are you interested in adopting or replicating this business model?", role: "Adopter" },
+  { key: "profile", label: "What makes you a good fit for replicating the model? How well do you respond to the adopter criteria shown in the adopter profile?", role: "Adopter" },
+  { key: "financing", label: "How would you potentially finance/co-finance the replication of the model?", role: "Adopter" },
+  { key: "partner_bmodel", label: "Which model(s) are you interested in?", role: "Partner" },
+  { key: "support_region", label: "Which countries or regions does your organization support?", role: "Partner" },
+  { key: "partner_sector", label: "In which sectors do you work?", role: "Partner" },
+  { key: "support_type", label: "What kind of support can you offer originators?", role: "Partner" },
+  { key: "additonal_support", label: "Please provide more details on how you can support originators.", role: "Partner" },
+  { key: "additional", label: "Any additional info?" },
+]
+

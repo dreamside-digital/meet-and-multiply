@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getApplicants } from "../redux/actions";
 import { map } from "lodash";
+import { Link } from "gatsby";
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,6 +10,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import Layout from "../layouts/default.js";
 import ProtectedPage from "../layouts/protected-page.js";
@@ -47,9 +49,10 @@ const ApplicantsPage = props => {
                           <TableCell>Last name</TableCell>
                           <TableCell>Email</TableCell>
                           <TableCell>Organization</TableCell>
-                          <TableCell>Sector</TableCell>
+                          <TableCell>Job title</TableCell>
+                          <TableCell>Location</TableCell>
                           <TableCell>Role</TableCell>
-                          <TableCell>Region</TableCell>
+                          <TableCell>Review</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -61,10 +64,13 @@ const ApplicantsPage = props => {
                               </TableCell>
                               <TableCell>{applicant.lastname}</TableCell>
                               <TableCell>{applicant.email}</TableCell>
-                              <TableCell>{applicant.orgname}</TableCell>
-                              <TableCell>{applicant.sector}</TableCell>
+                              <TableCell>{applicant.company}</TableCell>
+                              <TableCell>{applicant.position}</TableCell>
+                              <TableCell>{applicant.location}</TableCell>
                               <TableCell>{applicant.role}</TableCell>
-                              <TableCell>{applicant.region}</TableCell>
+                              <TableCell>
+                                <Link to={`/review?applicant=${applicant.id}`}><span className="btn btn-mod btn-color btn-circle">Review</span></Link>
+                              </TableCell>
                             </TableRow>
                           );
                         }))}

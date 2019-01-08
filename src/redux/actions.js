@@ -342,19 +342,53 @@ export function getApplicants() {
   };
 }
 
+export function getApplicant(id) {
+  return dispatch => {
+    const options = {
+      hostname: 'localhost',
+      port: 3000,
+      path: `/applicants/${id}`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${process.env.GATSBY_MNM_API_TOKEN}`,
+      }
+    }
+
+    const req = http.request(options, (res) => {
+      res.setEncoding('utf8');
+      res.on('data', (data) => {
+        const applicant = JSON.parse(data)
+        dispatch(updateApplicant(applicant));
+      })
+    })
+
+    req.on('error', (error) => {
+      console.error(error)
+    })
+
+    req.end()
+  };
+}
+
+export function updateApplicant(applicant) {
+  return { type: "UPDATE_APPLICANT", applicant };
+}
+
 export function updateApplicants(applicants) {
   return { type: "UPDATE_APPLICANTS", applicants };
 }
 
-export function updateApplicant(data) {
-  return dispatch => {
-    // TODO
-  };
-}
-
 export function createApplicant(data) {
   return dispatch => {
-    const jsonData = JSON.stringify(data)
+    const cleanedData = {
+      ...data,
+      partner_bmodel: data.partner_bmodel.join(", "),
+      support_region: data.support_region.join(", "),
+      partner_sector: data.partner_sector.join(", "),
+      support_type: data.support_type.join(", "),
+    }
+    const jsonData = JSON.stringify(cleanedData)
 
     const options = {
       hostname: 'localhost',
@@ -363,7 +397,7 @@ export function createApplicant(data) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Content-Length': data.length,
+        'Content-Length': jsonData.length,
         'Authorization': `Token token=${process.env.GATSBY_MNM_API_TOKEN}`,
       }
     }

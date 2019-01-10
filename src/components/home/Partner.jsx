@@ -10,7 +10,7 @@ const Partner = ({ partner, index, onSave, onDelete }) => {
 
   return (
     <div className="col-sm-6 col-md-4 col-lg-4">
-      <a href={partner["name"] ? partner["name"]["link"] : "#"}>
+      <a href={!onDelete ? partner["name"] ? partner["name"]["link"] : "#" : null}>
         <div className="service-item">
           <div className="service-icon logos">
             <Image content={partner["logo"]} onSave={onSave(index, "logo")} />

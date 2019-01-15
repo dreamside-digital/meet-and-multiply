@@ -22,7 +22,12 @@ import BackgroundImage from "../components/editables/BackgroundImage";
 import Partner from "../components/home/Partner";
 import OriginatorCard from "../components/home/OriginatorCard";
 
-import { PARTNER_REGION_OPTIONS } from "../utils/constants";
+import endevaLogo from "../assets/images/endeva.png";
+import ibanLogo from "../assets/images/iban.png";
+import intellecapLogo from "../assets/images/intellecap.png";
+
+
+import { PARTNER_REGION_OPTIONS, ORIGINATOR_OPTIONS } from "../utils/constants";
 
 const PAGE_ID = "home";
 
@@ -127,8 +132,8 @@ class HomePage extends React.Component {
 
   render() {
     const content = this.props.pageData ? this.props.pageData.content : {};
-    // const originators = this.props.data ? this.props.data.allOriginators.edges : [];
-    const originators = []
+    const originators = this.props.data ? this.props.data.allOriginators.edges : [];
+    // const originators = []
     const partners = content["partners"] || [];
     const subscriber = this.props.subscriberForm;
 
@@ -179,6 +184,11 @@ class HomePage extends React.Component {
                       onSave={this.saveHandler("landing-button-2")}
                       className="btn btn-mod btn-large btn-color"
                     />
+                  </div>
+                  <div className="header-logos">
+                    <img src={endevaLogo} alt="Endeva" className="logos" />
+                    <img src={ibanLogo} alt="IBAN" className="logos" />
+                    <img src={intellecapLogo} alt="Intellecap" className="logos" />
                   </div>
                 </div>
               </div>
@@ -903,15 +913,13 @@ class HomePage extends React.Component {
                               value={subscriber["bmodel"]}
                               onChange={this.updateForm("bmodel")}
                             >
-                              <option disabled="disabled" value="">
-                                Choose one
-                              </option>
-                              <option value="Originator 1">
-                                Originator 1
-                              </option>
-                              <option value="Originator 2">
-                                Originator 2
-                              </option>
+                              {
+                                ORIGINATOR_OPTIONS.map(originator => (
+                                  <option value={originator} key={originator}>
+                                    {originator}
+                                  </option>
+                                ))
+                              }
                             </select>
                             <div className="help-block with-errors" />
                           </div>
@@ -954,6 +962,7 @@ class HomePage extends React.Component {
                               value={subscriber["interest"]}
                               onChange={this.updateForm("interest")}
                               rows={6}
+                              required
                             />
                             <div className="help-block with-errors" />
                           </div>
@@ -969,6 +978,7 @@ class HomePage extends React.Component {
                               value={subscriber["profile"]}
                               onChange={this.updateForm("profile")}
                               rows={6}
+                              required
                             />
                             <div className="help-block with-errors" />
                           </div>
@@ -984,6 +994,7 @@ class HomePage extends React.Component {
                               value={subscriber["financing"]}
                               onChange={this.updateForm("financing")}
                               rows={6}
+                              required
                             />
                             <div className="help-block with-errors" />
                           </div>
@@ -1024,12 +1035,13 @@ class HomePage extends React.Component {
                               value={subscriber["partner_bmodel"]}
                               onChange={this.updateFormMultiSelect("partner_bmodel")}
                             >
-                              <option value="Originator 1">
-                                Originator 1
-                              </option>
-                              <option value="Originator 2">
-                                Originator 2
-                              </option>
+                              {
+                                ORIGINATOR_OPTIONS.map(originator => (
+                                  <option value={originator} key={originator}>
+                                    {originator}
+                                  </option>
+                                ))
+                              }
                             </select>
                             <div className="help-block with-errors" />
                           </div>
@@ -1127,6 +1139,7 @@ class HomePage extends React.Component {
                               value={subscriber["additonal_support"]}
                               onChange={this.updateForm("additonal_support")}
                               rows={6}
+                              required
                             />
                             <div className="help-block with-errors" />
                           </div>
@@ -1192,7 +1205,7 @@ export const query = graphql`
       slug
       content
     }
-    allOriginators {
+    allOriginators(filter: { year: { eq: 2019 }}) {
       edges {
         node {
           id

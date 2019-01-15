@@ -957,6 +957,11 @@ mobile-on .inner-nav .btn{
 .home-content{
     position: relative;
 }
+
+.home-content .header-logos {
+    display: flex;
+    filter: grayscale(1) brightness(200%);
+}
 .home-text{
     display: table-cell;
     height: 100%;

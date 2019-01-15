@@ -91,3 +91,10 @@ export const FORM_QUESTIONS = [
   { key: "additional", label: "Any additional info?" },
 ]
 
+export const ORIGINATOR_OPTIONS = [
+  "Blooom",
+  "LifeBank",
+  "ONergy",
+  "Ignitia",
+]
+

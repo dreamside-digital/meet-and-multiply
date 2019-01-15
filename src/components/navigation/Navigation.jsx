@@ -15,7 +15,7 @@ class Navigation extends React.Component {
 
   render() {
     const originators = this.props.data.allOriginators.edges
-    const pastOriginators = originators.filter(originator => originator.node.year === 2015)
+    // const pastOriginators = originators.filter(originator => originator.node.year === 2015)
     const currentOriginators = originators.filter(originator => originator.node.year === 2019)
 
     return (
@@ -31,7 +31,7 @@ class Navigation extends React.Component {
           </div>
             <div className="inner-nav desktop-nav">
               <ul className="clearlist scroll-nav local-scroll">
-                <li><Link to="/#originators">Originators</Link></li>
+                <OriginatorsDropdown originators={currentOriginators} anchorText={`Originators`} />
                 <li><Link to="/#call-to-action">Adopters</Link></li>
                 <li><Link to="/#partners">Partners</Link></li>
                 <li><Link to="/#contact">Event Info</Link></li>
@@ -72,7 +72,7 @@ class OriginatorsDropdown extends React.Component {
           onClick={this.handleMenu}
           color="inherit"
           style={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="#originators">
+          <Link to="#">
             { this.props.anchorText }
             <ExpandMoreIcon />
           </Link>

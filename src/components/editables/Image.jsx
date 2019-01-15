@@ -6,10 +6,6 @@ import ImageEditor from '../editingTools/ImageEditor'
 
 const styles = {
   imageContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
     width: '100%',
   },
   image: {
@@ -33,8 +29,8 @@ const Image = (props) => {
       content={{ imageSrc: imageSrc, caption: caption }}
       { ...props }
     >
-      <div className='img edit-container' style={styles.imageContainer}>
-        <img src={imageSrc} alt={caption} style={styles.image} />
+      <div className='img edit-container' style={{...styles.imageContainer, ...props.styles.container}}>
+        <img src={imageSrc} alt={caption} style={{...styles.image, ...props.styles.image}} />
         { props.showCaption && <small>{caption}</small> }
       </div>
     </Editable>
@@ -49,6 +45,7 @@ Image.propTypes = {
 Image.defaultProps = {
   content: { imageSrc: '/images/camera.svg' },
   onSave: content => console.log('Implement a function to save changes!', content),
+  styles: {},
 }
 
 export default Image;

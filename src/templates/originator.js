@@ -466,6 +466,7 @@ class OriginatorTemplate extends React.Component {
               <div className="split-section-headings left">
                 <div className="ssh-table">
                   <Image
+                    styles={{ container: { height: "inherit" }, image: { height: "inherit", objectFit: "cover"} }}
                     content={content["opportunity-image"]}
                     onSave={this.onSave("opportunity-image")}
                   />

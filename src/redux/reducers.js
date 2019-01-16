@@ -37,7 +37,7 @@ export const notifications = (state={}, action) => {
   }
 }
 
-export const navigation = (state={}, action) => {
+export const navigation = (state={ isPageLoading: false }, action) => {
   switch (action.type) {
     case 'OPEN_MENU':
       return {
@@ -48,6 +48,16 @@ export const navigation = (state={}, action) => {
       return {
         ...state,
         showMenu: false
+      }
+    case 'SHOW_PAGE_LOADER':
+      return {
+        ...state,
+        isPageLoading: true
+      }
+    case 'HIDE_PAGE_LOADER':
+      return {
+        ...state,
+        isPageLoading: false
       }
     default:
       return state

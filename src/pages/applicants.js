@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    applicants: state.applicants.applicants
+    applicants: state.applicants.applicants,
   };
 };
 

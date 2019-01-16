@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => {
     },
     createApplicant: data => {
       dispatch(createApplicant(data));
-    },
+    }
   };
 };
 

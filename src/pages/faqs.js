@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
     },
     onLoadPageData: data => {
       dispatch(loadPageData(data));
-    }
+    },
   };
 };
 

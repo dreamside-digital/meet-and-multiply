@@ -5,6 +5,7 @@ import withRoot from "../utils/withRoot";
 import Notification from "../components/notifications/Notification";
 import AccountButton from "../components/navigation/AccountButton";
 import Navigation from "../components/navigation/Navigation";
+import PageLoader from "../components/navigation/PageLoader";
 import Footer from "../components/navigation/Footer";
 
 import "../assets/sass/custom.scss";
@@ -53,6 +54,7 @@ const DefaultLayout = props => (
     <Navigation />
     <Notification />
     <AccountButton />
+    <PageLoader />
     <div className="page-content" style={styles.content} id="#top">
       {props.children}
     </div>

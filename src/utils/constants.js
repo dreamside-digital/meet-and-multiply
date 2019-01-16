@@ -92,7 +92,7 @@ export const FORM_QUESTIONS = [
 ]
 
 export const ORIGINATOR_OPTIONS = [
-  "Blooom",
+  "Ekutir",
   "LifeBank",
   "ONergy",
   "Ignitia",

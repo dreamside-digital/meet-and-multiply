@@ -135,6 +135,14 @@ export function closeMenu() {
   return { type: "CLOSE_MENU" };
 }
 
+export function showPageLoader() {
+  return { type: "SHOW_PAGE_LOADER" };
+}
+
+export function hidePageLoader() {
+  return { type: "HIDE_PAGE_LOADER" };
+}
+
 // FORMS ------------------------
 
 export function submitProjectFormSuccess() {
@@ -315,6 +323,7 @@ export function createSubscriber(data) {
 
 export function getApplicants() {
   return dispatch => {
+    dispatch(showPageLoader())
     const options = {
       hostname: API_ENDPOINT,
       path: '/applicants',
@@ -330,11 +339,13 @@ export function getApplicants() {
       res.on('data', (data) => {
         const applicants = JSON.parse(data)
         dispatch(updateApplicants(applicants));
+        dispatch(hidePageLoader())
       })
     })
 
     req.on('error', (error) => {
       console.error(error)
+      dispatch(hidePageLoader())
     })
 
     req.end()
@@ -379,6 +390,7 @@ export function updateApplicants(applicants) {
 
 export function updateApplicantStatus(id, status) {
   return dispatch => {
+    dispatch(showPageLoader())
     const jsonData = JSON.stringify({ status })
 
     const options = {
@@ -397,6 +409,7 @@ export function updateApplicantStatus(id, status) {
       res.on('data', (data) => {
         const body = JSON.parse(data)
         dispatch(updateApplicant(body.applicant));
+        dispatch(hidePageLoader())
         dispatch(
           showNotification(
             body.message,
@@ -408,6 +421,7 @@ export function updateApplicantStatus(id, status) {
 
     req.on('error', (error) => {
       console.error(error)
+      dispatch(hidePageLoader())
     })
 
     req.write(jsonData)
@@ -417,6 +431,7 @@ export function updateApplicantStatus(id, status) {
 
 export function createApplicant(data) {
   return dispatch => {
+    dispatch(showPageLoader())
     const cleanedData = {
       ...data,
       partner_bmodel: data.partner_bmodel.join(", "),
@@ -439,6 +454,7 @@ export function createApplicant(data) {
 
     const req = https.request(options, (res) => {
       if (res.statusCode === 201) {
+        dispatch(hidePageLoader())
         dispatch(
           showNotification(
             "Thank you for your application. We will review it within the next week. You should receive an email from us shortly.",
@@ -447,6 +463,7 @@ export function createApplicant(data) {
         );
       } else {
         console.error(res.statusMessage)
+        dispatch(hidePageLoader())
         dispatch(
           showNotification(
             "We were unable to save your application. Please make sure the form is filled in correctly and try again.",
@@ -457,6 +474,7 @@ export function createApplicant(data) {
     })
 
     req.on('error', (error) => {
+      dispatch(hidePageLoader())
       console.error(error)
     })
 
@@ -480,6 +498,7 @@ export function deleteApplicant(id) {
     const req = https.request(options, (res) => {
       if (res.statusCode === 204) {
         push('/applicants')
+        dispatch(hidePageLoader())
         return dispatch(
           showNotification(
             "The application has been deleted.",
@@ -490,6 +509,7 @@ export function deleteApplicant(id) {
     })
 
     req.on('error', (error) => {
+      dispatch(hidePageLoader())
       console.error(error)
     })
 

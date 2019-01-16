@@ -185,7 +185,7 @@ class HomePage extends React.Component {
                       className="btn btn-mod btn-large btn-color"
                     />
                   </div>
-                  <div className="header-logos">
+                  <div className="header-logos mt-80">
                     <img src={endevaLogo} alt="Endeva" className="logos" />
                     <img src={ibanLogo} alt="IBAN" className="logos" />
                     <img src={intellecapLogo} alt="Intellecap" className="logos" />
@@ -201,7 +201,7 @@ class HomePage extends React.Component {
                 <div className="ssh-table">
                   <div
                     className="ssh-cell page-section bg-scroll intro-section"
-                    data-background="adopters.jpg"
+                    data-background="adopters2.jpg"
                   />
                 </div>
               </div>
@@ -886,20 +886,6 @@ class HomePage extends React.Component {
                         <div className="cf-right-col">
 
                           <div className="form-group">
-                            <input
-                              type="text"
-                              name="subscriber[nationality]"
-                              id="nationality"
-                              className="input-lg form-control"
-                              placeholder="What is your nationality?"
-                              pattern=".{5,100}"
-                              value={subscriber["nationality"]}
-                              onChange={this.updateForm("nationality")}
-                            />
-                            <div className="help-block with-errors" />
-                          </div>
-
-                          <div className="form-group">
                             <label className="form-label" htmlFor="bmodel">
                               Which model are you interested in?
                             </label>
@@ -908,11 +894,14 @@ class HomePage extends React.Component {
                               id="bmodel"
                               className="input-lg form-control"
                               pattern=".{5,100}"
-                              required
                               data-error="Please select an item from the list."
                               value={subscriber["bmodel"]}
                               onChange={this.updateForm("bmodel")}
+                              required
                             >
+                              <option value={"Choose one"} disabled="disabled">
+                                Choose one
+                              </option>
                               {
                                 ORIGINATOR_OPTIONS.map(originator => (
                                   <option value={originator} key={originator}>
@@ -1022,7 +1011,7 @@ class HomePage extends React.Component {
 
                           <div className="form-group">
                             <label className="form-label" htmlFor="partner_bmodel">
-                              Which model(s) are you interested in?
+                              Which model(s) are you interested in? (press ⌘ or CTRL and click to select multiple)
                             </label>
                             <select
                               name="subscriber[partner_bmodel]"
@@ -1096,8 +1085,8 @@ class HomePage extends React.Component {
                               <option value="Energy">
                                 Energy
                               </option>
-                              <option value="Waste & Sanitation">
-                                Waste & Sanitation
+                              <option value="ICT">
+                                ICT
                               </option>
                             </select>
                             <div className="help-block with-errors" />

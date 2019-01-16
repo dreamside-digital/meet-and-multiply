@@ -130,7 +130,7 @@ const subscriberForm = {
   nationality: "",
   location: "",
   role: "Adopter",
-  bmodel: "",
+  bmodel: "Choose one",
   orgtype: "",
   interest: "",
   profile: "",

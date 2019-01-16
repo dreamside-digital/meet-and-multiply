@@ -465,6 +465,10 @@ Primary use:    MultiPurpose Template
         font-size: 24px;
         margin-bottom: 0;
     }
+
+    .home-content .header-logos {
+        display: none !important;
+    }
 }
 
 
@@ -697,10 +701,6 @@ Primary use:    MultiPurpose Template
     }
     .tpl-tabs > li.active a{
         background: #f5f5f5 !important;
-    }
-
-    .home-content .header-logos {
-        display: none !important;
     }
 }
 

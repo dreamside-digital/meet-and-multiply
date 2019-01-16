@@ -959,9 +959,13 @@ mobile-on .inner-nav .btn{
 }
 
 .home-content .header-logos {
-    display: flex;
     filter: grayscale(1) brightness(200%);
 }
+
+.home-content .header-logos .logos {
+    margin: 20px;
+}
+
 .home-text{
     display: table-cell;
     height: 100%;
@@ -1737,17 +1741,17 @@ a.logo:hover{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    padding: 140px 0;
+    padding: 80px 0;
 }
 
 .intro-section{
-    background-image: url(../images/adopters.jpg);
+    background-image: url(../images/adopters2.jpg);
 }
 .call-to-action{
     background-image: url(../images/mexico-city.jpg);
 }
 .small-section{
-    padding: 70px 0;
+    padding: 60px 0;
 }
 .ekutir {
     background-image: url(/ekutir/ekutirbg1.jpg);

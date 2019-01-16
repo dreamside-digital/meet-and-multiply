@@ -503,54 +503,15 @@ class OriginatorTemplate extends React.Component {
                 </div>
               </div>
 
+
+
               <div className="row">
                 <div className="col-sm-10 col-sm-offset-1">
-                  <div className="align-center mb-40 mb-xxs-30">
-                    <ul className="nav nav-tabs tpl-minimal-tabs animate">
-                      <li className="active" data-tab="#tab-one">
-                        <CustomLink
-                          content={content["replication-tab1-title"]}
-                          onSave={this.onSave("replication-tab1-title")}
-                        />
-                      </li>
-
-                      <li data-tab="#tab-two">
-                        <CustomLink
-                          content={content["replication-tab2-title"]}
-                          onSave={this.onSave("replication-tab2-title")}
-                        />
-                      </li>
-
-                      <li data-tab="#tab-three">
-                        <CustomLink
-                          content={content["replication-tab3-title"]}
-                          onSave={this.onSave("replication-tab3-title")}
-                        />
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="tab-content tpl-minimal-tabs-cont section-text align-center">
-                    <div className="tab-pane fade in active" id="tab-one">
-                      <Paragraph
-                        content={content["replication-tab1-description"]}
-                        onSave={this.onSave("replication-tab1-description")}
-                      />
-                    </div>
-
-                    <div className="tab-pane fade" id="tab-two">
-                      <Paragraph
-                        content={content["replication-tab2-description"]}
-                        onSave={this.onSave("replication-tab2-description")}
-                      />
-                    </div>
-
-                    <div className="tab-pane fade" id="tab-three">
-                      <Paragraph
-                        content={content["replication-tab3-description"]}
-                        onSave={this.onSave("replication-tab3-description")}
-                      />
-                    </div>
+                  <div className="section-text mb-80 mb-xs-50">
+                    <Paragraph
+                      content={content["replication-tab1-description"]}
+                      onSave={this.onSave("replication-tab1-description")}
+                    />
                   </div>
                 </div>
               </div>

@@ -37,7 +37,7 @@ class Navigation extends React.Component {
                 <li><Link to="/#contact">Event Info</Link></li>
                 <li><Link to="/faqs">FAQ</Link></li>
                 <li>
-                  <Link to="/#apply"><span className="btn btn-mod btn-color btn-circle">Notify me</span></Link>
+                  <Link to="/#apply"><span className="btn btn-mod btn-color btn-circle">Apply now</span></Link>
                 </li>
               </ul>
             </div>

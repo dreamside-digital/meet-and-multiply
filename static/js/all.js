@@ -38,7 +38,7 @@
     $(document).ready(function(){
         console.log("document ready")
 
-        setTimeout(() => {
+        setTimeout(function() {
             console.log("timeout function")
             $(window).trigger("resize");
 

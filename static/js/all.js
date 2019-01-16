@@ -36,10 +36,8 @@
 
 
     $(document).ready(function(){
-        console.log("document ready")
 
         setTimeout(function() {
-            console.log("timeout function")
             $(window).trigger("resize");
 
             // init_classic_menu();
@@ -60,7 +58,6 @@
     });
 
     $(window).resize(function(){
-        console.log("window resize function")
         init_classic_menu_resize();
         js_height_init();
         split_height_init();

@@ -10,6 +10,7 @@
         $(window).trigger("scroll");
         $(window).trigger("resize");
         init_shortcodes();
+        initPageSliders();
     });
 
     $(window).load(function(){
@@ -35,7 +36,6 @@
 
 
     $(document).ready(function(){
-
 
         setTimeout(() => {
             $(window).trigger("resize");

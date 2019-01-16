@@ -388,6 +388,10 @@ export function updateApplicants(applicants) {
   return { type: "UPDATE_APPLICANTS", applicants };
 }
 
+export function clearForm() {
+  return { type: "CLEAR_FORM" }
+}
+
 export function updateApplicantStatus(id, status) {
   return dispatch => {
     dispatch(showPageLoader())
@@ -455,6 +459,7 @@ export function createApplicant(data) {
     const req = https.request(options, (res) => {
       if (res.statusCode === 201) {
         dispatch(hidePageLoader())
+        dispatch(clearForm())
         dispatch(
           showNotification(
             "Thank you for your application. We will review it within the next week. You should receive an email from us shortly.",

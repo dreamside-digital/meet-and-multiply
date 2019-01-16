@@ -167,6 +167,11 @@ export const subscribers = (state={ form: subscriberForm, subscribers: {} }, act
           ...action.data
         }
       }
+    case 'CLEAR_FORM':
+      return {
+        ...state,
+        form: subscriberForm
+      }
     default:
       return state
   }
@@ -213,6 +218,11 @@ export const applicants = (state={ form: applicantForm, applicants: {}, applican
           ...state.form,
           ...action.data
         }
+      }
+    case 'CLEAR_APPLICANT':
+      return {
+        ...state,
+        form: applicantForm
       }
     default:
       return state

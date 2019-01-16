@@ -2402,6 +2402,12 @@ a.logo:hover{
 }
 .team-item-image img{
     height: 100%;
+    width: auto;
+    max-width: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
 }
 .team-item-image:after{

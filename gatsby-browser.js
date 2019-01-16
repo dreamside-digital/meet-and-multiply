@@ -26,7 +26,14 @@ export const replaceRouterComponent = ({ history }) => {
 
 export const onRouteUpdate = (route) => {
   setTimeout(() => {
-    window.dispatchEvent(new Event('hashchange'))
+    let event;
+    if(typeof(Event) === 'function') {
+        event = new Event('hashchange');
+    } else {
+        event = document.createEvent('Event');
+        event.initEvent('hashchange', true, true);
+    }
+    window.dispatchEvent(event)
     const location = route.location
 
     if (location && location.hash) {

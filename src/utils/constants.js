@@ -98,3 +98,4 @@ export const ORIGINATOR_OPTIONS = [
   "Ignitia",
 ]
 
+export const API_ENDPOINT = "thawing-sierra-34448.herokuapp.com"

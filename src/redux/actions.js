@@ -2,8 +2,8 @@ import axios from "axios";
 import { push } from "gatsby"
 import firebase from "../firebase/init";
 import slugify from "slugify";
-import http from "http";
-import { NOTIFICATION_MESSAGES } from "../utils/constants";
+import https from "https";
+import { NOTIFICATION_MESSAGES, API_ENDPOINT } from "../utils/constants";
 
 // AUTHENTICATION ------------------------
 
@@ -316,8 +316,7 @@ export function createSubscriber(data) {
 export function getApplicants() {
   return dispatch => {
     const options = {
-      hostname: 'localhost',
-      port: 3000,
+      hostname: API_ENDPOINT,
       path: '/applicants',
       method: 'GET',
       headers: {
@@ -326,7 +325,7 @@ export function getApplicants() {
       }
     }
 
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
       res.setEncoding('utf8');
       res.on('data', (data) => {
         const applicants = JSON.parse(data)
@@ -345,8 +344,7 @@ export function getApplicants() {
 export function getApplicant(id) {
   return dispatch => {
     const options = {
-      hostname: 'localhost',
-      port: 3000,
+      hostname: API_ENDPOINT,
       path: `/applicants/${id}`,
       method: 'GET',
       headers: {
@@ -355,7 +353,7 @@ export function getApplicant(id) {
       }
     }
 
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
       res.setEncoding('utf8');
       res.on('data', (data) => {
         const applicant = JSON.parse(data)
@@ -384,8 +382,7 @@ export function updateApplicantStatus(id, status) {
     const jsonData = JSON.stringify({ status })
 
     const options = {
-      hostname: 'localhost',
-      port: 3000,
+      hostname: API_ENDPOINT,
       path: `/applicants/${id}/update_status`,
       method: 'PUT',
       headers: {
@@ -395,7 +392,7 @@ export function updateApplicantStatus(id, status) {
       }
     }
 
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
       res.setEncoding('utf8');
       res.on('data', (data) => {
         const body = JSON.parse(data)
@@ -430,8 +427,7 @@ export function createApplicant(data) {
     const jsonData = JSON.stringify(cleanedData)
 
     const options = {
-      hostname: 'localhost',
-      port: 3000,
+      hostname: API_ENDPOINT,
       path: '/applicants',
       method: 'POST',
       headers: {
@@ -441,7 +437,7 @@ export function createApplicant(data) {
       }
     }
 
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
       if (res.statusCode === 201) {
         dispatch(
           showNotification(
@@ -472,8 +468,7 @@ export function createApplicant(data) {
 export function deleteApplicant(id) {
   return dispatch => {
     const options = {
-      hostname: 'localhost',
-      port: 3000,
+      hostname: API_ENDPOINT,
       path: `/applicants/${id}`,
       method: 'DELETE',
       headers: {
@@ -482,7 +477,7 @@ export function deleteApplicant(id) {
       }
     }
 
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
       if (res.statusCode === 204) {
         push('/applicants')
         return dispatch(

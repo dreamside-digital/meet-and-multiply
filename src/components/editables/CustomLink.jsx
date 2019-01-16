@@ -50,7 +50,7 @@ CustomLink.propTypes = {
 }
 
 CustomLink.defaultProps = {
-  content: { anchor: 'Link text', link: 'https://www.nomadiclabs.ca' },
+  content: { anchor: '', link: '' },
   onSave: newContent => console.log('Implement a function to save changes!', newContent),
 }
 

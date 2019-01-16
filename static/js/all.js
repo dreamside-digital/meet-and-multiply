@@ -377,7 +377,7 @@
     // Tabs minimal
     function init_shortcodes(){
 
-        var tpl_tab_height, hash_val;
+        var tpl_tab_height, target_tab;
 
         $(".tpl-minimal-tabs > li a").click(function(event){
 
@@ -386,15 +386,15 @@
             $(this).closest("li").addClass("active")
             $(".tpl-minimal-tabs-cont .tab-pane.active").removeClass("active").removeClass("in")
 
-            hash_val = "#" + $(this).attr("href").split("#")[1];
-            tpl_tab_height = $(".tpl-minimal-tabs-cont > .tab-pane").filter(hash_val).height();
+            target_tab = $(this).closest("li").data("tab")
+            tpl_tab_height = $(".tpl-minimal-tabs-cont > .tab-pane").filter(target_tab).height();
             $(".tpl-minimal-tabs-cont").animate({
                 height: tpl_tab_height
             }, function(){
                 $(".tpl-minimal-tabs-cont").css("height", "auto");
             });
 
-            $(".tpl-minimal-tabs-cont").find(hash_val).addClass("active").addClass("in")
+            $(".tpl-minimal-tabs-cont").find(target_tab).addClass("active").addClass("in")
 
         });
 

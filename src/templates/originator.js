@@ -263,13 +263,15 @@ class OriginatorTemplate extends React.Component {
 
               <div className="row multi-columns-row alt-features-grid">
                 <div className="col-sm-6 col-md-4 col-lg-4">
-                  <div className="alt-features-item align-center">
-                    <div className="alt-features-icon color">
-                      <span className="icon-key" />
+                  <div className="alt-features-item">
+                    <div className="align-center">
+                      <div className="alt-features-icon color">
+                        <span className="icon-key" />
+                      </div>
+                      <h3 className="alt-features-title">
+                        Key Partners, Activities and Resources
+                      </h3>
                     </div>
-                    <h3 className="alt-features-title">
-                      Key Partners, Activities and Resources
-                    </h3>
                     <div className="alt-features-descr">
                       <Paragraph
                         content={content["partners-activites-resources"]}
@@ -280,13 +282,15 @@ class OriginatorTemplate extends React.Component {
                 </div>
 
                 <div className="col-sm-6 col-md-4 col-lg-4">
-                  <div className="alt-features-item align-center">
-                    <div className="alt-features-icon color">
-                      <span className="icon-piechart" />
+                  <div className="alt-features-item">
+                    <div className="align-center">
+                      <div className="alt-features-icon color">
+                        <span className="icon-piechart" />
+                      </div>
+                      <h3 className="alt-features-title">
+                        Customer Relationships, Channels and Segments
+                      </h3>
                     </div>
-                    <h3 className="alt-features-title">
-                      Customer Relationships, Channels and Segments
-                    </h3>
                     <div className="alt-features-descr">
                       <Paragraph
                         content={content["customer-relationships"]}
@@ -297,11 +301,13 @@ class OriginatorTemplate extends React.Component {
                 </div>
 
                 <div className="col-sm-6 col-md-4 col-lg-4">
-                  <div className="alt-features-item align-center">
-                    <div className="alt-features-icon color">
-                      <span className="icon-pricetags" />
+                  <div className="alt-features-item">
+                    <div className="align-center">
+                      <div className="alt-features-icon color">
+                        <span className="icon-pricetags" />
+                      </div>
+                      <h3 className="alt-features-title">Cost structure</h3>
                     </div>
-                    <h3 className="alt-features-title">Cost structure</h3>
                     <div className="alt-features-descr">
                       <Paragraph
                         content={content["cost-structure"]}
@@ -312,13 +318,15 @@ class OriginatorTemplate extends React.Component {
                 </div>
 
                 <div className="col-sm-6 col-md-4 col-lg-4">
-                  <div className="alt-features-item align-center">
-                    <div className="alt-features-icon color">
-                      <span className="icon-wallet" />
+                  <div className="alt-features-item">
+                    <div className="align-center">
+                      <div className="alt-features-icon color">
+                        <span className="icon-wallet" />
+                      </div>
+                      <h3 className="alt-features-title">
+                        Revenue streams
+                      </h3>
                     </div>
-                    <h3 className="alt-features-title">
-                      Additional revenue streams
-                    </h3>
                     <div className="alt-features-descr">
                       <Paragraph
                         content={content["revenue-streams"]}
@@ -329,11 +337,13 @@ class OriginatorTemplate extends React.Component {
                 </div>
 
                 <div className="col-sm-6 col-md-4 col-lg-4">
-                  <div className="alt-features-item align-center">
-                    <div className="alt-features-icon color">
-                      <span className="icon-happy" />
+                  <div className="alt-features-item">
+                    <div className="align-center">
+                      <div className="alt-features-icon color">
+                        <span className="icon-happy" />
+                      </div>
+                      <h3 className="alt-features-title">Customer base</h3>
                     </div>
-                    <h3 className="alt-features-title">Customer base</h3>
                     <div className="alt-features-descr">
                       <Paragraph
                         content={content["customer-base"]}
@@ -343,20 +353,6 @@ class OriginatorTemplate extends React.Component {
                   </div>
                 </div>
 
-                <div className="col-sm-6 col-md-4 col-lg-4">
-                  <div className="alt-features-item align-center">
-                    <div className="alt-features-icon color">
-                      <span className="icon-ribbon" />
-                    </div>
-                    <h3 className="alt-features-title">Other features</h3>
-                    <div className="alt-features-descr">
-                      <Paragraph
-                        content={content["other-features"]}
-                        onSave={this.onSave("other-features")}
-                      />
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
@@ -367,26 +363,22 @@ class OriginatorTemplate extends React.Component {
             <div>
               <div className="container relative">
                 <div className="row">
-                  <div className="col-md-8 col-md-offset-2 align-center">
-                    <div className="section-icon">
-                      <span className="icon-linegraph" />
+                  <div className="col-md-8 col-md-offset-2">
+                    <div className="align-center">
+                      <div className="section-icon">
+                        <span className="icon-linegraph" />
+                      </div>
+
+                      <h2 className="section-title uppercase strong">
+                        <PlainText
+                          content={content["impact1-title"]}
+                          onSave={this.onSave("impact1-title")}
+                        />
+                      </h2>
                     </div>
 
-                    <h2 className="section-title uppercase strong">
-                      <PlainText
-                        content={content["impact1-title"]}
-                        onSave={this.onSave("impact1-title")}
-                      />
-                    </h2>
-                    <h3 className="section-title mb-30">
-                      <PlainText
-                        content={content["impact1-subtitle"]}
-                        onSave={this.onSave("impact1-subtitle")}
-                      />
-                    </h3>
-
                     <blockquote className="testimonial white">
-                      <PlainText
+                      <Paragraph
                         content={content["impact1-description"]}
                         onSave={this.onSave("impact1-description")}
                       />
@@ -399,26 +391,22 @@ class OriginatorTemplate extends React.Component {
             <div>
               <div className="container relative">
                 <div className="row">
-                  <div className="col-md-8 col-md-offset-2 align-center">
-                    <div className="section-icon">
-                      <span className="icon-linegraph" />
+                  <div className="col-md-8 col-md-offset-2">
+                    <div className="align-center">
+                      <div className="section-icon">
+                        <span className="icon-linegraph" />
+                      </div>
+
+                      <h2 className="section-title uppercase strong">
+                        <PlainText
+                          content={content["impact2-title"]}
+                          onSave={this.onSave("impact2-title")}
+                        />
+                      </h2>
                     </div>
 
-                    <h2 className="section-title uppercase strong">
-                      <PlainText
-                        content={content["impact2-title"]}
-                        onSave={this.onSave("impact2-title")}
-                      />
-                    </h2>
-                    <h3 className="section-title mb-30">
-                      <PlainText
-                        content={content["impact2-subtitle"]}
-                        onSave={this.onSave("impact2-subtitle")}
-                      />
-                    </h3>
-
                     <blockquote className="testimonial white">
-                      <PlainText
+                      <Paragraph
                         content={content["impact2-description"]}
                         onSave={this.onSave("impact2-description")}
                       />
@@ -431,26 +419,22 @@ class OriginatorTemplate extends React.Component {
             <div>
               <div className="container relative">
                 <div className="row">
-                  <div className="col-md-8 col-md-offset-2 align-center">
-                    <div className="section-icon">
-                      <span className="icon-linegraph" />
+                  <div className="col-md-8 col-md-offset-2">
+                    <div className="align-center">
+                      <div className="section-icon">
+                        <span className="icon-linegraph" />
+                      </div>
+
+                      <h2 className="section-title uppercase strong">
+                        <PlainText
+                          content={content["impact3-title"]}
+                          onSave={this.onSave("impact3-title")}
+                        />
+                      </h2>
                     </div>
 
-                    <h2 className="section-title uppercase strong">
-                      <PlainText
-                        content={content["impact3-title"]}
-                        onSave={this.onSave("impact3-title")}
-                      />
-                    </h2>
-                    <h3 className="section-title mb-30">
-                      <PlainText
-                        content={content["impact3-subtitle"]}
-                        onSave={this.onSave("impact3-subtitle")}
-                      />
-                    </h3>
-
                     <blockquote className="testimonial white">
-                      <PlainText
+                      <Paragraph
                         content={content["impact3-description"]}
                         onSave={this.onSave("impact3-description")}
                       />
@@ -523,21 +507,21 @@ class OriginatorTemplate extends React.Component {
                 <div className="col-sm-10 col-sm-offset-1">
                   <div className="align-center mb-40 mb-xxs-30">
                     <ul className="nav nav-tabs tpl-minimal-tabs animate">
-                      <li className="active">
+                      <li className="active" data-tab="#tab-one">
                         <CustomLink
                           content={content["replication-tab1-title"]}
                           onSave={this.onSave("replication-tab1-title")}
                         />
                       </li>
 
-                      <li>
+                      <li data-tab="#tab-two">
                         <CustomLink
                           content={content["replication-tab2-title"]}
                           onSave={this.onSave("replication-tab2-title")}
                         />
                       </li>
 
-                      <li>
+                      <li data-tab="#tab-three">
                         <CustomLink
                           content={content["replication-tab3-title"]}
                           onSave={this.onSave("replication-tab3-title")}
@@ -547,21 +531,21 @@ class OriginatorTemplate extends React.Component {
                   </div>
 
                   <div className="tab-content tpl-minimal-tabs-cont section-text align-center">
-                    <div className="tab-pane fade in active" id="mini-one">
+                    <div className="tab-pane fade in active" id="tab-one">
                       <Paragraph
                         content={content["replication-tab1-description"]}
                         onSave={this.onSave("replication-tab1-description")}
                       />
                     </div>
 
-                    <div className="tab-pane fade" id="mini-two">
+                    <div className="tab-pane fade" id="tab-two">
                       <Paragraph
                         content={content["replication-tab2-description"]}
                         onSave={this.onSave("replication-tab2-description")}
                       />
                     </div>
 
-                    <div className="tab-pane fade" id="mini-three">
+                    <div className="tab-pane fade" id="tab-three">
                       <Paragraph
                         content={content["replication-tab3-description"]}
                         onSave={this.onSave("replication-tab3-description")}

@@ -336,6 +336,7 @@ export function getApplicants() {
 
     const req = https.request(options, (res) => {
       res.setEncoding('utf8');
+      console.log(res)
       res.on('data', (data) => {
         const applicants = JSON.parse(data)
         dispatch(updateApplicants(applicants));

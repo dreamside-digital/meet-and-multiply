@@ -1,5 +1,5 @@
 import React from "react";
-import { push } from "gatsby";
+import { push, Link } from "gatsby";
 import firebase from "../../firebase/init";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button"
@@ -110,6 +110,14 @@ class AccountButton extends React.Component {
             open={Boolean(anchorEl)}
             onClose={closeMenu}
           >
+            {props.allowEditing && (
+              <MenuItem>
+                <Link to={"/applicants"}>
+                  Review applicants
+                </Link>
+              </MenuItem>
+            )}
+
             {props.allowEditing && (
               <MenuItem
                 onClick={() => {

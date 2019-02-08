@@ -120,6 +120,10 @@ class HomePage extends React.Component {
     this.props.updateSubscriberForm({ [field]: event.target.value });
   };
 
+  updateFormCheckbox = field => event => {
+    this.props.updateSubscriberForm({ [field]: event.target.checked });
+  };
+
   updateFormMultiSelect = field => event => {
     const arr = []
     for (var i = 0, l = event.target.options.length; i < l; i++) {
@@ -747,12 +751,14 @@ class HomePage extends React.Component {
                     <div className="clearfix">
                       <div className="cf-left-col">
                         <div className="form-group">
+                          <label className="form-label" htmlFor="first-name">
+                            First name
+                          </label>
                           <input
                             type="text"
                             name="subscriber[firstname]"
                             id="first-name"
                             className="input-lg form-control"
-                            placeholder="First name"
                             pattern=".{3,100}"
                             required
                             data-error="Please enter your name."
@@ -763,12 +769,14 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
+                          <label className="form-label" htmlFor="last-name">
+                            Last name
+                          </label>
                           <input
                             type="text"
                             name="subscriber[lastname]"
                             id="last-name"
                             className="input-lg form-control"
-                            placeholder="Last name"
                             pattern=".{3,100}"
                             required
                             data-error="Please enter your last name."
@@ -779,12 +787,14 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
+                          <label className="form-label" htmlFor="company">
+                            Organization name
+                          </label>
                           <input
                             type="text"
                             name="subscriber[company]"
                             id="company"
                             className="input-lg form-control"
-                            placeholder="Organization name"
                             pattern=".{5,100}"
                             value={subscriber["company"]}
                             onChange={this.updateForm("company")}
@@ -793,12 +803,30 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
+                          <label className="form-label" htmlFor="website">
+                            Website
+                          </label>
+                          <input
+                            type="text"
+                            name="subscriber[website]"
+                            id="website"
+                            className="input-lg form-control"
+                            pattern=".{5,100}"
+                            value={subscriber["website"]}
+                            onChange={this.updateForm("website")}
+                          />
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label" htmlFor="position">
+                            Job title
+                          </label>
                           <input
                             type="text"
                             name="subscriber[position]"
                             id="position"
                             className="input-lg form-control"
-                            placeholder="Job title"
                             pattern=".{5,100}"
                             value={subscriber["position"]}
                             onChange={this.updateForm("position")}
@@ -807,12 +835,14 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
+                          <label className="form-label" htmlFor="email">
+                            Email
+                          </label>
                           <input
                             type="email"
                             name="subscriber[email]"
                             id="email"
                             className="input-lg form-control"
-                            placeholder="Email"
                             pattern=".{5,100}"
                             required
                             data-error="Please enter a valid email address."
@@ -823,12 +853,47 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
+                          <label className="form-label" htmlFor="phone">
+                            Phone number
+                          </label>
+                          <input
+                            type="tel"
+                            name="subscriber[phone]"
+                            id="phone"
+                            className="input-lg form-control"
+                            pattern=".{5,100}"
+                            data-error="Please enter a valid phone number."
+                            value={subscriber["phone"]}
+                            onChange={this.updateForm("phone")}
+                          />
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label" htmlFor="whatsapp">
+                            <input
+                              type="checkbox"
+                              name="subscriber[whatsapp]"
+                              id="whatsapp"
+                              style={{ marginRight: '8px' }}
+                              pattern=".{5,100}"
+                              value={subscriber["whatsapp"]}
+                              onChange={this.updateFormCheckbox("whatsapp")}
+                            />
+                            You can contact me on Whatsapp
+                          </label>
+                          <div className="help-block with-errors" />
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label" htmlFor="referrer">
+                            How did you find out about this event?
+                          </label>
                           <input
                             type="text"
                             name="subscriber[referrer]"
                             id="referrer"
                             className="input-lg form-control"
-                            placeholder="How did you find out about this event?"
                             pattern=".{5,100}"
                             required
                             data-error="This field is required."
@@ -839,12 +904,14 @@ class HomePage extends React.Component {
                         </div>
 
                         <div className="form-group">
+                          <label className="form-label" htmlFor="location">
+                            Where are you currently based?
+                          </label>
                           <input
                             type="text"
                             name="subscriber[location]"
                             id="location"
                             className="input-lg form-control"
-                            placeholder="Where are you currently based?"
                             pattern=".{5,100}"
                             value={subscriber["location"]}
                             onChange={this.updateForm("location")}
@@ -941,12 +1008,14 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="form-group">
+                            <label className="form-label" htmlFor="interest">
+                              Why are you interested in adopting or replicating this business model?
+                            </label>
                             <textarea
                               type="text"
                               name="subscriber[interest]"
                               id="interest"
                               className="input-lg form-control"
-                              placeholder="Why are you interested in adopting or replicating this business model?"
                               pattern=".{5,100}"
                               value={subscriber["interest"]}
                               onChange={this.updateForm("interest")}
@@ -957,12 +1026,15 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="form-group">
+                            <label className="form-label" htmlFor="profile">
+                              What makes you a good fit for replicating the model? How well do you respond to the adopter criteria shown in the adopter profile?
+                            </label>
                             <textarea
                               type="text"
                               name="subscriber[profile]"
                               id="profile"
                               className="input-lg form-control"
-                              placeholder="What makes you a good fit for replicating the model? How well do you respond to the adopter criteria shown in the adopter profile?"
+                              placeholder="Please provide as much details as possible on your relevant experience."
                               pattern=".{5,100}"
                               value={subscriber["profile"]}
                               onChange={this.updateForm("profile")}
@@ -973,12 +1045,14 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="form-group">
+                            <label className="form-label" htmlFor="financing">
+                              How would you potentially finance/co-finance the replication of the model?
+                            </label>
                             <textarea
                               type="text"
                               name="subscriber[financing]"
                               id="financing"
                               className="input-lg form-control"
-                              placeholder="How would you potentially finance/co-finance the replication of the model?"
                               pattern=".{5,100}"
                               value={subscriber["financing"]}
                               onChange={this.updateForm("financing")}
@@ -989,12 +1063,14 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="form-group">
+                            <label className="form-label" htmlFor="additional">
+                              Any additional info?
+                            </label>
                             <input
                               type="text"
                               name="subscriber[additional]"
                               id="additional"
                               className="input-lg form-control"
-                              placeholder="Any additional info?"
                               pattern=".{5,100}"
                               value={subscriber["additional"]}
                               onChange={this.updateForm("additional")}
@@ -1118,12 +1194,14 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="form-group">
+                            <label className="form-label" htmlFor="additonal_support">
+                              Please provide more details on how you can support originators.
+                            </label>
                             <textarea
                               type="text"
                               name="subscriber[additonal_support]"
                               id="additonal_support"
                               className="input-lg form-control"
-                              placeholder="Please provide more details on how you can support originators."
                               pattern=".{5,100}"
                               value={subscriber["additonal_support"]}
                               onChange={this.updateForm("additonal_support")}
@@ -1134,12 +1212,14 @@ class HomePage extends React.Component {
                           </div>
 
                           <div className="form-group">
+                            <label className="form-label" htmlFor="additional">
+                              Any additional info?
+                            </label>
                             <input
                               type="text"
                               name="subscriber[additional]"
                               id="additional"
                               className="input-lg form-control"
-                              placeholder="Any additional info?"
                               pattern=".{5,100}"
                               value={subscriber["additional"]}
                               onChange={this.updateForm("additional")}

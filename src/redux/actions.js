@@ -336,9 +336,13 @@ export function getApplicants() {
 
     const req = https.request(options, (res) => {
       res.setEncoding('utf8');
-      console.log(res)
+      let jsonData = "";
       res.on('data', (data) => {
-        const applicants = JSON.parse(data)
+        jsonData += data
+      })
+
+      res.on('end', () => {
+        const applicants = JSON.parse(jsonData)
         dispatch(updateApplicants(applicants));
         dispatch(hidePageLoader())
       })

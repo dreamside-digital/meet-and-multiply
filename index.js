@@ -18,7 +18,7 @@ admin.initializeApp({
 });
 
 function deployToolkit() {
-  const child = shell.exec(`yarn deploy`, { async: true });
+  const child = shell.exec(`rm -r .cache && yarn deploy`, { async: true });
 
   child.on(`exit`, (code, signal) => {
     console.log(

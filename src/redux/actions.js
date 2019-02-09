@@ -371,8 +371,14 @@ export function getApplicant(id) {
 
     const req = https.request(options, (res) => {
       res.setEncoding('utf8');
+      let jsonData = "";
+
       res.on('data', (data) => {
-        const applicant = JSON.parse(data)
+        jsonData += data
+      })
+
+      res.on('end', () => {
+        const applicant = JSON.parse(jsonData)
         dispatch(updateApplicant(applicant));
       })
     })
@@ -448,6 +454,7 @@ export function createApplicant(data) {
       partner_sector: data.partner_sector.join(", "),
       support_type: data.support_type.join(", "),
     }
+
     const jsonData = JSON.stringify(cleanedData)
 
     const options = {

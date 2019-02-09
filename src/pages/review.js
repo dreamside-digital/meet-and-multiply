@@ -64,7 +64,7 @@ const ReviewPage = props => {
                               return (
                                 <TableRow key={question.key}>
                                   <TableCell style={{ width: "340px" }}>{question.label}</TableCell>
-                                  <TableCell>{applicant[question.key]}</TableCell>
+                                  <TableCell>{`${applicant[question.key]}`}</TableCell>
                                 </TableRow>
                               )
                             };
